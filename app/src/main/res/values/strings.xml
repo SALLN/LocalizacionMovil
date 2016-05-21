@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LocalizacionMovil</string>
+    <string name="info_text">Necesitas tener creada una cuenta para iniciar la aplicación</string>
+    <string name="nombre_input">Nombre</string>
+    <string name="crear_boton">CREAR CUENTA</string>
+    <string name="contrasena_input">Contraseña</string>
+    <string name="recordar_check">Recordarme</string>
+    <string name="olvidar_text">¿Olvidaste tu Contraseña?</string>
+    <string name="olvidar_text2"></string>
+    <string name="entrar_boton">AUTENTICAR</string>
+</resources>
