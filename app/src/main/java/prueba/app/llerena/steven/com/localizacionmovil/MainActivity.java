@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
     int metros_espera = 0; // DEFINICIONES
     SharedPreferences prefs;
     Handler handler;
+    boolean Interval=true;
+    IntentFilter filter;
+    Intent batteryStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
         nombre.setText(prefs.getString("Usuario", ""));
         contra.setText(prefs.getString("Contra", ""));
 
+        //filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        //edit3= (EditText) findViewById(R.id.id_vehiculo);
 
-
-
-        handler = new Handler();
-        handler.postDelayed(updateData,5000);
+        //handler = new Handler();
+        //handler.postDelayed(updateData,5000);
     }
 
     public void BotonEntrar(View v2) {
@@ -129,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         editurl = (EditText) findViewById(R.id.editurl);
         edit3.setText(prefs.getString("ID", ""));
 
-
         estado = (TextView) findViewById(R.id.estado);
 
         LocManagerGps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -140,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void ActivarSistema(View v) {
 
-/*
+        Interval=false;
+
         estado.setText("SISTEMA ACTIVADO");
         estado.setBackgroundColor(Color.parseColor("#0bf43d"));
 
@@ -162,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean status_gps = LocManagerGps.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!status_gps) StartRed();
-*/
+
     }
 
     public void DesactivarSistema(View vi){
@@ -381,57 +384,23 @@ public class MainActivity extends AppCompatActivity {
         });
         dialogo1.show();
     }
-    IntentFilter filter;
-    Intent batteryStatus;
-
-    private void registerBatteryLevelReceiver() {
-        //registerReceiver(battery_receiver, filter);
-    }
-
 
     private Runnable updateData = new Runnable(){
+
         public void run(){
             Log.d("MENSAJE","ENTRA EN RUNNABLE");
-            filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
             batteryStatus = registerReceiver(null, filter);
-            //call the service here
-            int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            int status2 = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+
+            int nivel = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+            int voltaje = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
             int acodc =  batteryStatus.getIntExtra(String.valueOf(BatteryManager.EXTRA_PLUGGED), -1);
-            textbateria = String.valueOf(acodc);
+            textbateria = acodc+"---"+nivel+"---"+voltaje;
             texto_ombe();
-            handler.postDelayed(updateData,1000);
-            ////// set the interval time here
-        }
-    };
-
-    private BroadcastReceiver battery_receiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            boolean isPresent = intent.getBooleanExtra("present", false);
-            String technology = intent.getStringExtra("technology");
-            int plugged = intent.getIntExtra("plugged", -1);
-            int scale = intent.getIntExtra("scale", -1);
-            int health = intent.getIntExtra("health", 0);
-            int status = intent.getIntExtra("status", 0);
-            int rawlevel = intent.getIntExtra("level", -1);
-            int voltage = intent.getIntExtra("voltage", 0);
-            int temperature = intent.getIntExtra("temperature", 0);
-            int level = 0;
-
-            Bundle bundle = intent.getExtras();
-
-            Log.i("BatteryLevel", bundle.toString());
-            textbateria=bundle.toString();
-
-
+            if (Interval){ handler.postDelayed(updateData,1000); }    else { Interval=true; }
         }
     };
 
 public void texto_ombe(){    edit3.setText(textbateria);    }
-
-
 
 }
 
