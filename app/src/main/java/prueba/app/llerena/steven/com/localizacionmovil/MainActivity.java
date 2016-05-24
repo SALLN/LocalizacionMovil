@@ -3,6 +3,9 @@ package prueba.app.llerena.steven.com.localizacionmovil;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -21,6 +25,8 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +35,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +47,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,31 +82,43 @@ public class MainActivity extends AppCompatActivity {
     int tiempo_espera = 30*1000;
     int metros_espera = 0; // DEFINICIONES
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
     Handler handler;
     boolean Interval=true;
     IntentFilter filter;
     Intent batteryStatus;
+    NotificationManager notifyMgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
+        long MillisActual = Calendar.getInstance().getTimeInMillis();
+        long MillisViejos = prefs.getLong("INICIADO5",(long) 0);
+
+        if (MillisActual-MillisViejos<500) {
+        finish();
+        int p = android.os.Process.myPid();
+        android.os.Process.killProcess(p);        }
+
+
         setContentView(R.layout.dialog_signin);
         aunten = (Button) findViewById(R.id.entrar_boton);
         inc = (TextView) findViewById(R.id.incorrecto);
-        prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
 
         nombre = (EditText) findViewById(R.id.nombre_input);
         contra = (EditText) findViewById(R.id.contrasena_input);
 
         nombre.setText(prefs.getString("Usuario", ""));
         contra.setText(prefs.getString("Contra", ""));
+        Notificacion();
 
         //filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         //edit3= (EditText) findViewById(R.id.id_vehiculo);
 
-        //handler = new Handler();
-        //handler.postDelayed(updateData,5000);
     }
 
     public void BotonEntrar(View v2) {
@@ -107,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         Contrasena=contra.getText().toString();
 
         if(regis) {
-            SharedPreferences.Editor editor = prefs.edit();
             editor.putString("Usuario", Usuario);
             editor.putString("Contra", Contrasena);
             editor.commit();
@@ -142,9 +163,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void ActivarSistema(View v) {
 
-        Interval=false;
+        handler = new Handler();
+        handler.postDelayed(updateData,5000);
 
-        estado.setText("SISTEMA ACTIVADO");
+        estado.setText(R.string.activar);
         estado.setBackgroundColor(Color.parseColor("#0bf43d"));
 
         tiempo_espera = Integer.parseInt(edit1.getText().toString())*1000 ;
@@ -154,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
         ID_VEHICULO = edit3.getText().toString();
         edit1.setActivated(false);
 
-        SharedPreferences.Editor editor = prefs.edit();
         editor.putString("ID",ID_VEHICULO);
         editor.putString("URL",URLL);
         editor.commit();
@@ -170,7 +191,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void DesactivarSistema(View vi){
 
-        estado.setText("SISTEMA DESACTIVADO");
+        Interval=false;
+
+        estado.setText(R.string.desactivar);
         estado.setBackgroundColor(Color.parseColor("#f40b49"));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED         && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)         {return;        }
@@ -400,7 +423,39 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-public void texto_ombe(){    edit3.setText(textbateria);    }
+    private void Notificacion() {
+
+        notifyMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
+        Intent intent = new Intent(this,Cerrarapp.class);
+//        intent.setAction(Intent.ACTION_VIEW); // Para lanzar activity al pulsar en la notificacion
+        PendingIntent piDismiss = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.marker)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.marker))
+                        .setContentTitle("LOCALIZACION MOVIL")
+                        .setContentText("SACA SACA SACALO")
+                        .setStyle(
+                                new NotificationCompat.BigTextStyle()
+                                        .bigText("SACA SACA SACALO"))
+                        .addAction(R.drawable.cerrar,
+                                "OFF", piDismiss)
+                        //.addAction(R.drawable.androideity2,
+                          //      "IGNORAR", null)
+                        .setAutoCancel(true);
+
+        Notification notification = mBuilder.build();
+
+        // Construir la notificación y emitirla
+        notifyMgr.notify(1010,notification);
+
+    }
+
+    public void Cerrar(){        finish();    }
+
+    public void texto_ombe(){    edit3.setText(textbateria);    }
 
 }
 

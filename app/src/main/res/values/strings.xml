@@ -8,4 +8,6 @@
     <string name="olvidar_text">¿Olvidaste tu Contraseña?</string>
     <string name="olvidar_text2"></string>
     <string name="entrar_boton">AUTENTICAR</string>
+    <string name="activar">SISTEMA ACTIVADO</string>
+    <string name="desactivar">SISTEMA DESACTIVADO</string>
 </resources>

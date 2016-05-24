@@ -24,6 +24,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Cerrarapp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <receiver
             android:name=".ReceiverBoot">
             <intent-filter>
