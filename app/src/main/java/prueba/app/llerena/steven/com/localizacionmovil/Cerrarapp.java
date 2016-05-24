@@ -25,12 +25,8 @@ public class Cerrarapp extends MainActivity {
         super.onCreate(savedInstanceState);
 
         long MillisActual = Calendar.getInstance().getTimeInMillis();
-        Log.d("MILISEGUNDOSS",String.valueOf(MillisActual));
         editor.putLong("INICIADO5",MillisActual);
         editor.commit();
-
-        Log.d("CERRARFIN_CERRARAPP","ENTRA");
-
         notifyMgr.cancel(1010);
 
         Cerrar();        finish();

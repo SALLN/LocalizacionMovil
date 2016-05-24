@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="prueba.app.llerena.steven.com.terceraprueba.MainActivity">
+  <!--  <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+-->
+
+  <item
+      android:id="@+id/signin"
+      app:showAsAction="ifRoom"
+      android:icon="@drawable/login"
+      android:title="@string/signin"
+      />
+
+    <item
+        android:id="@+id/mapa"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/mapa"
+        android:title="@string/mapa"
+        />
+
+
+    <item
+        android:id="@+id/config"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/config"
+        android:title="@string/config"
+        />
+</menu>

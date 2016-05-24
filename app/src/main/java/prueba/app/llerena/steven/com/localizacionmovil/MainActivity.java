@@ -29,8 +29,11 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -52,7 +55,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-
 
     MyLocationListenerGps LocListenerGps;
     MyLocationListenerRed LocListenerRed;
@@ -92,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
         editor = prefs.edit();
 
@@ -105,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         android.os.Process.killProcess(p);        }
 
 
-        setContentView(R.layout.dialog_signin);
         aunten = (Button) findViewById(R.id.entrar_boton);
         inc = (TextView) findViewById(R.id.incorrecto);
 
@@ -116,9 +116,8 @@ public class MainActivity extends AppCompatActivity {
         contra.setText(prefs.getString("Contra", ""));
         Notificacion();
 
-        //filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        //edit3= (EditText) findViewById(R.id.id_vehiculo);
-
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(battery_receiver, filter);
     }
 
     public void BotonEntrar(View v2) {
@@ -163,9 +162,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void ActivarSistema(View v) {
 
-        handler = new Handler();
-        handler.postDelayed(updateData,5000);
-
         estado.setText(R.string.activar);
         estado.setBackgroundColor(Color.parseColor("#0bf43d"));
 
@@ -190,8 +186,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void DesactivarSistema(View vi){
-
-        Interval=false;
 
         estado.setText(R.string.desactivar);
         estado.setBackgroundColor(Color.parseColor("#f40b49"));
@@ -408,21 +402,6 @@ public class MainActivity extends AppCompatActivity {
         dialogo1.show();
     }
 
-    private Runnable updateData = new Runnable(){
-
-        public void run(){
-            Log.d("MENSAJE","ENTRA EN RUNNABLE");
-            batteryStatus = registerReceiver(null, filter);
-
-            int nivel = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int voltaje = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
-            int acodc =  batteryStatus.getIntExtra(String.valueOf(BatteryManager.EXTRA_PLUGGED), -1);
-            textbateria = acodc+"---"+nivel+"---"+voltaje;
-            texto_ombe();
-            if (Interval){ handler.postDelayed(updateData,1000); }    else { Interval=true; }
-        }
-    };
-
     private void Notificacion() {
 
         notifyMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
@@ -456,6 +435,71 @@ public class MainActivity extends AppCompatActivity {
     public void Cerrar(){        finish();    }
 
     public void texto_ombe(){    edit3.setText(textbateria);    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch ( item.getItemId() )
+        {
+            case R.id.mapa:
+            {
+                Toast.makeText(this, "Botón mapa pulsado", Toast.LENGTH_SHORT).show();
+            }
+            break;
+
+            case R.id.signin:
+            {
+                Intent intento2 = new Intent(MainActivity.this,Signin.class);
+                startActivity(intento2);
+            }
+            break;
+
+            case R.id.config:
+            {
+                setContentView(R.layout.activity_main);
+
+            }
+            break;
+
+            default:
+                Toast.makeText(this, "Botón config pulsado", Toast.LENGTH_SHORT).show();
+
+                return super.onOptionsItemSelected(item);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private BroadcastReceiver battery_receiver = new BroadcastReceiver() {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+    int plugged = intent.getIntExtra("plugged", -1);
+            if (plugged==1){
+
+               // Toast.makeText(getBaseContext(),"ENCHUFADO CON AC",Toast.LENGTH_SHORT).show();
+            }else {
+                //Toast.makeText(getBaseContext(),"ENCHUFADO CON DC O NO ENCHUFADO",Toast.LENGTH_SHORT).show();
+            }
+
+            int rawlevel = intent.getIntExtra("level", -1);
+            int level = 0;
+
+            Bundle bundle = intent.getExtras();
+
+            //Log.i("BatteryLevel", bundle.toString());
+
+
+        }
+    };
 
 }
 
