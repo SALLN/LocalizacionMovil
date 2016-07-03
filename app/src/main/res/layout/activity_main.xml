@@ -86,6 +86,7 @@
         android:id="@+id/tiempo"
         android:layout_below="@id/texturl"
         android:layout_marginTop="20dp"
+        android:text="0"
     />
 
 
@@ -109,6 +110,7 @@
         android:layout_marginLeft="20px"
         android:id="@+id/distancia"
         android:layout_marginTop="20dp"
+        android:text="0"
         />
 
     <TextView

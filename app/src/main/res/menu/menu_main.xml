@@ -16,6 +16,13 @@
       android:title="@string/signin"
       />
 
+  <item
+      android:id="@+id/config"
+      app:showAsAction="ifRoom"
+      android:icon="@drawable/config"
+      android:title="@string/config"
+      />
+
     <item
         android:id="@+id/mapa"
         app:showAsAction="ifRoom"
@@ -24,10 +31,7 @@
         />
 
 
-    <item
-        android:id="@+id/config"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/config"
-        android:title="@string/config"
-        />
+
+
+
 </menu>
