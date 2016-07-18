@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/config_mapa"
+    tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
+
+
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="CONFIG MAPA"
+    android:textAlignment="center"
+    android:id="@+id/titulo2222"
+    android:textSize="30dp"
+    android:textColor="@color/Rojo"
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="respuesta servidor"
+        android:textAlignment="center"
+        android:id="@+id/respuesta"
+        android:layout_below="@+id/titulo2222"
+        android:textSize="30dp"
+        android:textColor="@color/Rojo"
+        />
+    <Button
+        android:id="@+id/botoncargar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/respuesta"
+        android:text="Cargar"
+        android:textSize="30dp"
+        android:onClick="CargarVehiculos"/>
+
+    <Button
+        android:id="@+id/botonselec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botoncargar"
+        android:text="Seleccionar"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:onClick="VehiculoSeleccionado"/>
+
+</RelativeLayout>

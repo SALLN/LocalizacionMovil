@@ -7,11 +7,12 @@
     <string name="recordar_check">Recordarme</string>
     <string name="olvidar_text">¿Olvidaste tu Contraseña?</string>
     <string name="olvidar_text2"></string>
-    <string name="entrar_boton">AUTENTICAR</string>
+    <string name="entrar_boton">INICIAR SESION</string>
     <string name="activar">SISTEMA ACTIVADO</string>
     <string name="desactivar">SISTEMA DESACTIVADO</string>
     <string name="action_settings">Settings</string>
     <string name="mapa">Mapa</string>
+    <string name="config_mapa">Configuracion Mapa</string>
     <string name="signin">Login</string>
     <string name="config">Config</string>
 

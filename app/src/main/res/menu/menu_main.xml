@@ -9,11 +9,18 @@
         app:showAsAction="never" />
 -->
 
+  <!--<item-->
+      <!--android:id="@+id/signin"-->
+      <!--app:showAsAction="ifRoom"-->
+      <!--android:icon="@drawable/login"-->
+      <!--android:title="@string/signin"-->
+      <!--/>-->
+
   <item
-      android:id="@+id/signin"
+      android:id="@+id/config"
       app:showAsAction="ifRoom"
-      android:icon="@drawable/login"
-      android:title="@string/signin"
+      android:icon="@drawable/config"
+      android:title="@string/config"
       />
 
     <item
@@ -23,11 +30,14 @@
         android:title="@string/mapa"
         />
 
+  <item
+      android:id="@+id/config_mapa"
+      app:showAsAction="ifRoom"
+      android:icon="@drawable/config_mapa"
+      android:title="@string/config_mapa"
+      />
 
-    <item
-        android:id="@+id/config"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/config"
-        android:title="@string/config"
-        />
+
+
+
 </menu>

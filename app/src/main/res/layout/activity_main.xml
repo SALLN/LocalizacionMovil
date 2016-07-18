@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+
+    <!--tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +20,6 @@
     tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
 
 
-
-
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -20,51 +28,82 @@
         android:onClick="Click_Imagen"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-    />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SISTEMA DE"
-        android:textAlignment="center"
-        android:id="@+id/titulo2"
-        android:textSize="30dp"
-        android:textColor="@color/Rojo"
-    />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LOCALIZACIÓN MÓVIL"
-        android:textAlignment="center"
-        android:id="@+id/titulo"
-        android:textSize="30dp"
-        android:layout_below="@id/titulo2"
-        android:textColor="@color/Rojo"
-    />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="URL:"
-        android:id="@+id/texturl"
-        android:textSize="30dp"
-        android:layout_below="@id/titulo"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/Negro"
+        android:id="@+id/imagen"
     />
 
     <EditText
+        android:id="@+id/nombre_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:background="@drawable/edit_text_border"
+        android:ems="10"
+        android:hint="@string/nombre_input"
+        android:inputType="textPersonName"
+        android:padding="@dimen/edit_text_padding"
+        android:layout_below="@+id/imagen"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/contrasena_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/padding_between"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:background="@drawable/edit_text_border"
+        android:ems="10"
+        android:hint="@string/contrasena_input"
+        android:inputType="textPassword"
+        android:padding="@dimen/edit_text_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <CheckBox
+        android:id="@+id/recordar_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php"
-        android:id="@+id/editurl"
-        android:textSize="14dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/titulo"
-        android:layout_toRightOf="@+id/texturl"
-        android:layout_toEndOf="@+id/texturl"
-    />
+        android:layout_alignLeft="@+id/contrasena_input"
+        android:layout_alignStart="@+id/contrasena_input"
+        android:layout_below="@+id/contrasena_input"
+        android:checked="true"
+        android:text="@string/recordar_check" />
+
+
+
+    <TextView
+        android:id="@+id/incorrecto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/contrasena_input"
+        android:layout_below="@+id/contrasena_input"
+        android:layout_marginTop="-10dp"
+        android:text="@string/olvidar_text2"
+        android:textColor="@color/Rojo"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+
+    <Button
+        android:id="@+id/entrar_boton"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="@string/entrar_boton"
+        android:textColor="@android:color/white"
+        android:background="@color/rojodialog"
+        android:onClick="BotonEntrar"
+        android:layout_below="@+id/recordar_check"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/entrar_boton"
+        android:layout_marginTop="10dp"
+        android:background="#C8C9CB" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,8 +111,8 @@
         android:text="Tiempo:"
         android:id="@+id/text1"
         android:textSize="30dp"
-        android:layout_below="@id/texturl"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/divider"
+        android:layout_marginTop="10dp"
         android:textColor="@color/Negro"
     />
 
@@ -82,10 +121,12 @@
         android:layout_height="wrap_content"
         android:hint="Digite Tiempo (seg)"
         android:layout_toRightOf="@+id/text1"
-        android:layout_marginLeft="20px"
+        android:layout_marginLeft="10dp"
         android:id="@+id/tiempo"
-        android:layout_below="@id/texturl"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/divider"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:text="30"
     />
 
 
@@ -96,7 +137,7 @@
         android:id="@+id/text2"
         android:layout_below="@+id/text1"
         android:textSize="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/Negro"
     />
 
@@ -106,9 +147,11 @@
         android:hint="Digite distancia (mts)"
         android:layout_below="@+id/text1"
         android:layout_toRightOf="@+id/text2"
-        android:layout_marginLeft="20px"
+        android:layout_marginLeft="10dp"
         android:id="@+id/distancia"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:text="0"
         />
 
     <TextView
@@ -118,9 +161,8 @@
         android:id="@+id/text3"
         android:textSize="30dp"
         android:layout_below="@+id/text2"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/Negro"
-
         />
 
     <EditText
@@ -128,52 +170,60 @@
         android:layout_height="wrap_content"
         android:text="Steven"
         android:layout_toRightOf="@+id/text3"
-        android:layout_marginLeft="20px"
+        android:layout_marginLeft="10dp"
         android:layout_below="@+id/text2"
         android:id="@+id/id_vehiculo"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
         />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activar Gps"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="ACTIVAR SISTEMA"
         android:id="@+id/botonactivar"
         android:onClick="ActivarSistema"
         android:layout_below="@id/text3"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@android:color/white"
+        android:background="@color/rojodialog"
 
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Desactivar Gps"
-        android:id="@+id/botonadesactivar"
-        android:onClick="DesactivarSistema"
-        android:layout_toRightOf="@+id/botonactivar"
-        android:layout_below="@id/text3"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-        />
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginBottom="@dimen/padding_between"
+        android:layout_below="@+id/botonactivar"
+        android:layout_marginTop="10dp"
+        android:background="#C8C9CB" />
 
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SISTEMA DESACTIVADO"
-        android:id="@+id/estado"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColor="@color/Blanco"
-        android:background="@color/Rojo"
-        android:textSize="25dp"
-        android:layout_below="@+id/botonactivar"
-        android:layout_marginTop="80px"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
+        android:text="URL:"
+        android:id="@+id/texturl"
+        android:textSize="30dp"
+        android:layout_below="@id/divider2"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Negro"
         />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php"
+        android:id="@+id/editurl"
+        android:textSize="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/divider2"
+        android:layout_toRightOf="@+id/texturl"
+        android:singleLine="true" />
 
 
 </RelativeLayout>
+
+    <!--</ScrollView>-->
