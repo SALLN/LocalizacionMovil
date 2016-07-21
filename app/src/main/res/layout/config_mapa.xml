@@ -10,16 +10,51 @@
     android:id="@+id/config_mapa"
     tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
 
+    <Button
+        android:id="@+id/botoncargar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cargar Usuarios"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:onClick="CargarVehiculos"/>
+
+
+    <View
+        android:id="@+id/divider34"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/botoncargar"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="3dp"
+        android:background="#C8C9CB" />
 
     <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="CONFIG MAPA"
-    android:textAlignment="center"
-    android:id="@+id/titulo2222"
-    android:textSize="30dp"
-    android:textColor="@color/Rojo"
-    />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar posicion"
+        android:id="@+id/respuesta23"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/divider34"
+        android:textSize="25dp"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:layout_below="@id/divider34"
+        android:layout_alignParentRight="true"
+        android:onClick="MarkerONOFF"/>
+
+    <View
+        android:id="@+id/divider56"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/respuesta23"
+        android:layout_marginTop="5dp"
+        android:background="#C8C9CB" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,27 +62,11 @@
         android:text="respuesta servidor"
         android:textAlignment="center"
         android:id="@+id/respuesta"
-        android:layout_below="@+id/titulo2222"
+        android:layout_below="@+id/divider56"
         android:textSize="30dp"
-        android:textColor="@color/Rojo"
-        />
-    <Button
-        android:id="@+id/botoncargar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/respuesta"
-        android:text="Cargar"
-        android:textSize="30dp"
-        android:onClick="CargarVehiculos"/>
+        android:textColor="@color/Rojo"/>
+    <!--android:visibility="invisible"-->
 
-    <Button
-        android:id="@+id/botonselec"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/botoncargar"
-        android:text="Seleccionar"
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
-        android:onClick="VehiculoSeleccionado"/>
+
 
 </RelativeLayout>

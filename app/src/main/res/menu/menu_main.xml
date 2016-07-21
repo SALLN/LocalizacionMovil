@@ -17,7 +17,7 @@
       <!--/>-->
 
   <item
-      android:id="@+id/config"
+      android:id="@+id/activity_main"
       app:showAsAction="ifRoom"
       android:icon="@drawable/config"
       android:title="@string/config"

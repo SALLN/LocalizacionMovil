@@ -16,6 +16,8 @@
         <include layout="@layout/config_mapa"/>
 
 
+
+
     </ViewFlipper>
 
 </LinearLayout>

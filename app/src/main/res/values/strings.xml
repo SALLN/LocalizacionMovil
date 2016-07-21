@@ -13,6 +13,8 @@
     <string name="action_settings">Settings</string>
     <string name="mapa">Mapa</string>
     <string name="config_mapa">Configuracion Mapa</string>
+    <string name="iniciar">INICIAR SESION</string>
+    <string name="cerrar">CERRAR SESION</string>
     <string name="signin">Login</string>
     <string name="config">Config</string>
 
