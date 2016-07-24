@@ -1,6 +1,7 @@
 package prueba.app.llerena.steven.com.localizacionmovil;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.Manifest;
 import android.app.AlertDialog;
@@ -54,6 +55,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.BufferedOutputStream;
@@ -114,34 +116,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
         editor = prefs.edit();
-//        long MillisActual = Calendar.getInstance().getTimeInMillis();
-//        long MillisViejos = prefs.getLong("INICIADO5",(long) 0);
-//
-//        if (MillisActual-MillisViejos<500) {
-//        finish();
-//        int p = android.os.Process.myPid();
-//        android.os.Process.killProcess(p);        }
 
         setContentView(R.layout.flipper);
-
-
-        //Notificacion();
-
-        //IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        //registerReceiver(battery_receiver, filter);
-        //handler = new Handler();
-        //handler.postDelayed(updateData2,500);
 
         vf = (ViewFlipper) findViewById(R.id.viewFlipper);
         vf.setOnTouchListener(new ListenerTouchViewFlipper());
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         Inicializar();
-        BotonEntrar(null);
 
+        String usu = prefs.getString("ID", "Usuariooo");
+        if (usu.equals("Usuariooo")){            GuardarUsuario();      }
+        else { edit_idvehiculo.setText(prefs.getString("ID","Usuario")); BotonEntrar(null); }
     }
 
     @Override
@@ -161,21 +149,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap map) {
         // Add a marker in Sydney, Australia, and move the camera.
         mMap = map;
+
 //        LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,10));
-
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            public void onMapClick(LatLng point) {
+                Toast.makeText(
+                        MainActivity.this,
+                        "Click\n" +
+                                "Lat: " + point.latitude + "\n" +
+                                "Lng: " + point.longitude + "\n",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-    private Runnable updateData = new Runnable(){
-
-        public void run(){
-            if (MarkerGoogle){
-            CargarCoordenadas cargar = new CargarCoordenadas();
-            cargar.execute();
-            handler.postDelayed(updateData,2000);       }
-        }
-    };
 
     private class ListenerTouchViewFlipper implements View.OnTouchListener{
 
@@ -296,9 +284,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         tiempo_espera = Integer.parseInt(edit_tiempo.getText().toString()) * 1000;
         metros_espera = Integer.parseInt(edit_distancia.getText().toString());
-
         ID_VEHICULO = edit_idvehiculo.getText().toString();
 
+        editor.putInt("Tiempo",tiempo_espera);
+        editor.putInt("Metros",metros_espera);
         editor.putString("ID", ID_VEHICULO);
         editor.commit();
 
@@ -487,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 inc.setText("");
                 nombre.setEnabled(false);
                 contra.setEnabled(false);
-            if (!Sistema_Activado){                ActivarSistema(null);            }
+            if (!Sistema_Activado){                ActivarSistema(null);          }
 
         }else if(respuestaservidor.equals("NO")){
             inc.setText("Usuario o contraseña Incorrectos");
@@ -774,7 +763,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         edit_tiempo= (EditText) findViewById(R.id.tiempo);
         edit_distancia= (EditText) findViewById(R.id.distancia);
         edit_idvehiculo= (EditText) findViewById(R.id.id_vehiculo);
-        edit_idvehiculo.setText(prefs.getString("ID", "Steven"));
+
+        edit_tiempo.setText(String.valueOf(prefs.getInt("Tiempo",30)));
+        edit_distancia.setText(String.valueOf(prefs.getInt("Metros",0)));
 
         textrespuesta = (TextView) findViewById(R.id.respuesta);
 
@@ -786,7 +777,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LocListenerRed = new MyLocationListenerRed();
     }
 
-    public void texto_ombe(){    edit_idvehiculo.setText(textbateria);    }
+    public void GuardarUsuario(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("Usuario");
+        alertDialog.setMessage("¿Cual es tu nombre? (Con este nombre seras identificado en el sistema)");
+
+        final EditText input = new EditText(MainActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+        alertDialog.setIcon(R.mipmap.iconusuario);
+        alertDialog.setPositiveButton("ACEPTAR",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        editor.putString("ID",input.getText().toString());
+                        editor.commit();
+                        edit_idvehiculo.setText(input.getText().toString());
+                        BotonEntrar(null);
+                    }
+                });
+
+
+        alertDialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -852,34 +869,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return super.onOptionsItemSelected(item);
     }
 
-    private Runnable updateData2 = new Runnable(){
-
+    private Runnable updateData = new Runnable(){
         public void run(){
-            handler.postDelayed(updateData2,1000);
-        }
-    };
-
-    private BroadcastReceiver battery_receiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int plugged = intent.getIntExtra("plugged", -1);
-            if (plugged==1){
-
-               // Toast.makeText(getBaseContext(),"ENCHUFADO CON AC",Toast.LENGTH_SHORT).show();
-            }else {
-                //Toast.makeText(getBaseContext(),"ENCHUFADO CON DC O NO ENCHUFADO",Toast.LENGTH_SHORT).show();
+            if (MarkerGoogle){
+                CargarCoordenadas cargar = new CargarCoordenadas();
+                cargar.execute();  handler.postDelayed(updateData,2000);
             }
-            int rawlevel = intent.getIntExtra("level", -1);
-            int level = 0;
-
-            Bundle bundle = intent.getExtras();
-
-            //Log.i("BatteryLevel", bundle.toString());
-
-
         }
     };
+
+
 
 }
 

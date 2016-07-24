@@ -21,64 +21,89 @@
 
 
     <ImageView
+        android:id="@+id/imagen"
         android:layout_width="30dp"
         android:layout_height="30dp"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+
         android:src="@drawable/signo"
         android:clickable="true"
+
         android:onClick="Click_Imagen"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/imagen"
-    />
+        />
+
+    <TextView
+
+        android:id="@+id/text33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="-5dp"
+
+        android:text="Cuenta"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:textColor="@color/rojodialog"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/nombre_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imagen"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/normal_padding"
         android:background="@drawable/edit_text_border"
-        android:ems="10"
         android:hint="@string/nombre_input"
         android:inputType="textPersonName"
         android:padding="@dimen/edit_text_padding"
-        android:layout_below="@+id/imagen"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
 
     <EditText
         android:id="@+id/contrasena_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nombre_input"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="@dimen/padding_between"
         android:layout_marginTop="@dimen/normal_padding"
+        android:padding="@dimen/edit_text_padding"
+
         android:background="@drawable/edit_text_border"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
         android:hint="@string/contrasena_input"
         android:inputType="textPassword"
-        android:padding="@dimen/edit_text_padding"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
 
     <CheckBox
         android:id="@+id/recordar_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/contrasena_input"
+
         android:layout_alignLeft="@+id/contrasena_input"
         android:layout_alignStart="@+id/contrasena_input"
-        android:layout_below="@+id/contrasena_input"
-        android:checked="true"
-        android:text="@string/recordar_check" />
 
+        android:checked="true"
+        android:text="@string/recordar_check"
+        />
 
 
     <TextView
         android:id="@+id/incorrecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/contrasena_input"
         android:layout_below="@+id/contrasena_input"
+
         android:layout_marginTop="-10dp"
+        android:layout_alignStart="@+id/contrasena_input"
+
         android:text="@string/olvidar_text2"
         android:textColor="@color/Rojo"
         android:textStyle="bold"
@@ -89,11 +114,15 @@
         android:id="@+id/entrar_boton"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_below="@+id/recordar_check"
+
         android:text="@string/entrar_boton"
         android:textColor="@android:color/white"
+        android:textStyle="bold"
+
         android:background="@color/rojodialog"
+
         android:onClick="BotonEntrar"
-        android:layout_below="@+id/recordar_check"
         />
 
     <View
@@ -101,104 +130,122 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_below="@+id/entrar_boton"
+
         android:layout_marginTop="10dp"
-        android:background="#C8C9CB" />
+
+        android:background="#C8C9CB"
+        />
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiempo:"
         android:id="@+id/text1"
-        android:textSize="30dp"
-        android:layout_below="@id/divider"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/Negro"
-    />
-
-    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Digite Tiempo (seg)"
-        android:layout_toRightOf="@+id/text1"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@id/divider"
+
+        android:layout_marginTop="10dp"
+
+        android:text="Tiempo:"
+        android:textSize="30dp"
+        android:textColor="@color/Negro"
+        />
+
+    <EditText
         android:id="@+id/tiempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/divider"
-        android:layout_marginTop="10dp"
-        android:singleLine="true"
-        android:text="30"
-    />
 
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/text1"
+
+        android:singleLine="true"
+        android:hint="Digite Tiempo (seg)"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distancia:"
         android:id="@+id/text2"
-        android:layout_below="@+id/text1"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/Negro"
-    />
-
-    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Digite distancia (mts)"
         android:layout_below="@+id/text1"
-        android:layout_toRightOf="@+id/text2"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/distancia"
+
         android:layout_marginTop="10dp"
+
+        android:textSize="30dp"
+        android:text="Distancia:"
+        android:textColor="@color/Negro"
+        />
+
+    <EditText
+        android:id="@+id/distancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text1"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/text2"
+
+        android:hint="Digite distancia (mts)"
         android:singleLine="true"
-        android:text="0"
         />
 
     <TextView
+        android:id="@+id/text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:"
-        android:id="@+id/text3"
-        android:textSize="30dp"
         android:layout_below="@+id/text2"
+
         android:layout_marginTop="10dp"
+
+        android:text="ID:"
+        android:textSize="30dp"
         android:textColor="@color/Negro"
         />
 
     <EditText
+        android:id="@+id/id_vehiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Steven"
-        android:layout_toRightOf="@+id/text3"
-        android:layout_marginLeft="10dp"
         android:layout_below="@+id/text2"
-        android:id="@+id/id_vehiculo"
+
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/text3"
+
         android:singleLine="true"
+        android:hint="Digite Usuario"
         />
 
     <Button
+        android:id="@+id/botonactivar"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="ACTIVAR SISTEMA"
-        android:id="@+id/botonactivar"
-        android:onClick="ActivarSistema"
         android:layout_below="@id/text3"
+
         android:layout_marginTop="15dp"
+
+        android:text="ACTIVAR SISTEMA"
         android:textColor="@android:color/white"
+        android:textStyle="bold"
+
         android:background="@color/rojodialog"
 
+        android:onClick="ActivarSistema"
         />
-
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginBottom="@dimen/padding_between"
         android:layout_below="@+id/botonactivar"
+
+        android:layout_marginBottom="@dimen/padding_between"
         android:layout_marginTop="10dp"
-        android:background="#C8C9CB" />
+
+        android:background="#C8C9CB"
+        />
 
 </RelativeLayout>
 

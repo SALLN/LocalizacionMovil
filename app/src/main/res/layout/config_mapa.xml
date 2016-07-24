@@ -64,9 +64,7 @@
         android:id="@+id/respuesta"
         android:layout_below="@+id/divider56"
         android:textSize="30dp"
-        android:textColor="@color/Rojo"/>
-    <!--android:visibility="invisible"-->
-
-
+        android:textColor="@color/Rojo"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
