@@ -78,22 +78,35 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+<<<<<<< HEAD
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.sqrt;
 
+=======
+>>>>>>> origin/master
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback    {
 
     private GoogleMap mMap;
     MyLocationListenerGps LocListenerGps;           MyLocationListenerRed LocListenerRed;
     LocationManager LocManagerGps,       LocManagerRed;
+<<<<<<< HEAD
 
+=======
+    Button boton_activar,aunten;
+    View dividerview;
+    EditText edit_tiempo,edit_distancia,edit_idvehiculo,nombre,contra;
+    TextView text_estado,inc,textrespuesta,fechacoordenada;
+>>>>>>> origin/master
     String Posiciones[][] = new String[500][5];
     String proveedor = null, fecha_gps= null, hora_gps= null, posicion=null, conectado="si", mensaje=null;
     String ID_VEHICULO, respuestaservidor="",  respuestaservidor_vehiculos="", Usuario, Contrasena;
     String longi,Mensaje, textbateria="MENSAJE";
     String[] strArray, Datos_Vehiculo;
+<<<<<<< HEAD
 
     //String ReporteCoordenadas = "http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php";
+=======
+>>>>>>> origin/master
     String Vehiculo = null;
     String ReporteCoordenadas = "http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php";
     String Autenticar= "http://ticollcloud.ddns.net/AWS/Android_Autenticar.php";
@@ -102,24 +115,35 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     int duracion=300, Vista=1, Contador_layouts=1;
     int Cantidad=1, tiempo_espera = 30*1000, metros_espera = 0;
     float init_x;
+<<<<<<< HEAD
     boolean Interval=true, Inicio_Sesion=false, Sistema_Activado=false, MarkerGoogle = false, Arrancar = true;
 
     HttpURLConnection con = null;       URL url = null;
     SharedPreferences prefs;    SharedPreferences.Editor editor;
     Handler handler = new Handler();
     IntentFilter filter;    Intent batteryStatus;
+=======
+    HttpURLConnection con = null;       URL url = null;
+    SharedPreferences prefs;    SharedPreferences.Editor editor;
+    Handler handler;     IntentFilter filter;    Intent batteryStatus;
+    boolean Interval=true, Inicio_Sesion=false, Sistema_Activado=false, MarkerGoogle = false, Arrancar = true;
+>>>>>>> origin/master
     NotificationManager notifyMgr;
     ViewFlipper vf;
     RelativeLayout.LayoutParams Params_text;
     RelativeLayout.LayoutParams Params_check;
     RelativeLayout.LayoutParams Params_Selec;
     RelativeLayout layout;
+<<<<<<< HEAD
 
     Button boton_activar,aunten;
     View dividerview;
     EditText edit_tiempo,edit_distancia,edit_idvehiculo,nombre,contra;
     TextView text_estado,inc,textrespuesta,fechacoordenada;
     Switch swit,switsegui;
+=======
+    Switch swit;
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (usu.equals("Usuariooo")){            GuardarUsuario();      }
         else { edit_idvehiculo.setText(prefs.getString("ID","Usuario")); BotonEntrar(null); }
     }
+<<<<<<< HEAD
 
     @Override
     public void onPause() {
@@ -175,6 +200,42 @@ Float LatDestino,LngDestino;
 //        });
     }
 
+=======
+
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+        MarkerGoogle = false;
+        swit.setChecked(false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        // Add a marker in Sydney, Australia, and move the camera.
+        mMap = map;
+
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,10));
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            public void onMapClick(LatLng point) {
+                Toast.makeText(
+                        MainActivity.this,
+                        "Click\n" +
+                                "Lat: " + point.latitude + "\n" +
+                                "Lng: " + point.longitude + "\n",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+>>>>>>> origin/master
     private class ListenerTouchViewFlipper implements View.OnTouchListener{
 
         @Override
@@ -210,11 +271,19 @@ Float LatDestino,LngDestino;
     }
 
     private Animation inFromRightAnimation() {
+<<<<<<< HEAD
 
         Animation inFromRight = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
                 Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
 
+=======
+
+        Animation inFromRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
+
+>>>>>>> origin/master
         inFromRight.setDuration(duracion);
         inFromRight.setInterpolator(new AccelerateInterpolator());
 
@@ -283,6 +352,7 @@ Float LatDestino,LngDestino;
 
     public void ActivarSistema(View v) {
 
+<<<<<<< HEAD
 
         Log.i("ACTIVAR SISTEMA","ACTIVAR SISTEMA");
 
@@ -300,6 +370,22 @@ Float LatDestino,LngDestino;
         ID_VEHICULO = edit_idvehiculo.getText().toString();
 
         editor.putInt("Tiempo",tiempo_espera/1000);
+=======
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED & ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) { return;}
+    Sistema_Activado=!Sistema_Activado;
+
+        if (Sistema_Activado) {
+
+            if (Inicio_Sesion) {
+                boton_activar.setText("DESACTIVAR SISTEMA");
+                boton_activar.setBackgroundColor(Color.parseColor("#0bf43d"));
+
+        tiempo_espera = Integer.parseInt(edit_tiempo.getText().toString()) * 1000;
+        metros_espera = Integer.parseInt(edit_distancia.getText().toString());
+        ID_VEHICULO = edit_idvehiculo.getText().toString();
+
+        editor.putInt("Tiempo",tiempo_espera);
+>>>>>>> origin/master
         editor.putInt("Metros",metros_espera);
         editor.putString("ID", ID_VEHICULO);
         editor.commit();
@@ -311,6 +397,7 @@ Float LatDestino,LngDestino;
                 edit_tiempo.setEnabled(false);
                 edit_distancia.setEnabled(false);
                 edit_idvehiculo.setEnabled(false);
+<<<<<<< HEAD
            // }
            // else{
            //     Sistema_Activado=!Sistema_Activado;
@@ -323,6 +410,19 @@ Float LatDestino,LngDestino;
             boton_activar.setText("ACTIVAR SISTEMA");
             boton_activar.setBackgroundColor(Color.parseColor("#E91E63"));
 
+=======
+            }
+            else{
+                Sistema_Activado=!Sistema_Activado;
+                Toast.makeText(getBaseContext(),"Debe iniciar sesion para encender el sistema",Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+
+            boton_activar.setText("ACTIVAR SISTEMA");
+            boton_activar.setBackgroundColor(Color.parseColor("#E91E63"));
+
+>>>>>>> origin/master
             LocManagerRed.removeUpdates(LocListenerRed);
             LocManagerGps.removeUpdates(LocListenerGps);
 
@@ -330,7 +430,10 @@ Float LatDestino,LngDestino;
             edit_distancia.setEnabled(true);
             edit_idvehiculo.setEnabled(true);
         }
+<<<<<<< HEAD
         Log.i("ACTIVAR SISTEMA","ACTIVAR SISTEMA FINAL");
+=======
+>>>>>>> origin/master
     }
 
     public void PauseRed() {
@@ -356,8 +459,15 @@ Float LatDestino,LngDestino;
     public class MyLocationListenerGps implements LocationListener {
 
         @Override public void onStatusChanged(String provider, int status, Bundle extras){}
+<<<<<<< HEAD
         @Override public void onProviderEnabled(String provider) {  Log.i("GPS","PROVIDER ENABLED");  PauseRed(); }
         @Override public void onProviderDisabled(String provider) { Log.i("GPS","PROVIDER DISABLED");   StartRed();}
+=======
+        @Override public void onProviderEnabled(String provider) { PauseRed(); }
+        @Override public void onProviderDisabled(String provider) {
+
+            StartRed();}
+>>>>>>> origin/master
         @Override public void onLocationChanged(Location LocGps) {
 
             Log.i("GPS","STATUS CHANGED");
@@ -582,6 +692,8 @@ Float LatDestino,LngDestino;
 
                 }
 
+<<<<<<< HEAD
+=======
                 out.close();
                 urlc.disconnect();
 
@@ -593,6 +705,60 @@ Float LatDestino,LngDestino;
         protected void onCancelled()  {  super.onCancelled();   }
     }
 
+    public class CargarCoordenadas extends AsyncTask<String,Void,String> {
+
+        @Override
+        protected void onPreExecute()  {    super.onPreExecute();   }
+
+        @Override
+        protected void onPostExecute(String result) {super.onPostExecute(result);
+           fechacoordenada.setText(respuestaservidor_vehiculos);
+            mMap.clear();
+            LatLng pos = new LatLng(Float.parseFloat(Datos_Vehiculo[0]),Float.parseFloat(Datos_Vehiculo[1]));
+            mMap.addMarker(new MarkerOptions().position(pos).title("Marker in Sydney"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos,17));
+
+            onCancelled();  }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+
+                HttpURLConnection urlc = (HttpURLConnection) (new URL(ConsultaCoordenadas).openConnection());
+
+                mensaje = "Usuario=" + URLEncoder.encode(Usuario, "UTF-8")
+                        + "&Vehiculo=" + URLEncoder.encode(Vehiculo, "UTF-8");
+
+                urlc.setDoOutput(true); // Activar método POST
+                urlc.setFixedLengthStreamingMode(mensaje.getBytes().length); // Tamaño previamente conocido
+                urlc.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  // Establecer application/x-www-form-urlencoded debido al formato clave-valor
+
+                OutputStream out = new BufferedOutputStream(urlc.getOutputStream());
+                out.write(mensaje.getBytes());
+                out.flush();
+
+                InputStream is2 = urlc.getInputStream();
+                int ch2;
+                StringBuffer b2 =new StringBuffer();
+                while( ( ch2 = is2.read() ) != -1 ){
+                    b2.append( (char)ch2 );
+                }
+                respuestaservidor_vehiculos=b2.toString();
+                Datos_Vehiculo = respuestaservidor_vehiculos.substring(1,respuestaservidor_vehiculos.length()-1).split(",");
+>>>>>>> origin/master
+                out.close();
+                urlc.disconnect();
+
+            } catch (IOException e) { } // PUBLICACION POSICION PHP PARTE 1
+            return null;
+        }
+
+        @Override
+        protected void onCancelled()  {  super.onCancelled();   }
+    }
+
+<<<<<<< HEAD
     public class CargarCoordenadas extends AsyncTask<String,Void,String> {
 
         @Override
@@ -674,10 +840,17 @@ Float LatDestino,LngDestino;
 Float LatVehiculo,LngVehiculo;
 String FechaVehiculo;
 
+=======
+>>>>>>> origin/master
     public void CargarVehiculos(View v3){
 
         CargarVehiculosPHP cargar  = new CargarVehiculosPHP();
         cargar.execute();
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
     }
 
     public void CrearLayouts(){
@@ -723,6 +896,7 @@ String FechaVehiculo;
 
         if(swit.isChecked()){
 
+<<<<<<< HEAD
             GuardarVehiculo();
 
             MarkerGoogle = true;
@@ -743,6 +917,28 @@ String FechaVehiculo;
         }
         if (!bol){            Vehiculo=strArray[Contador-102];        }
     }
+=======
+            int Contador=101;
+            boolean bol = true;
+
+            while(bol) {
+                CheckBox choricera = (CheckBox) findViewById(Integer.parseInt(String.valueOf(Contador)));
+                bol = !choricera.isChecked();
+                Contador++;
+            }
+            if (!bol){            Vehiculo=strArray[Contador-102];        }
+
+            handler = new Handler();
+            MarkerGoogle = true;
+            handler.postDelayed(updateData,500);
+        }
+        else{
+            MarkerGoogle=false;
+
+        }
+    }
+
+>>>>>>> origin/master
     public void Click_Imagen(View view){
 
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
@@ -818,9 +1014,64 @@ String FechaVehiculo;
         aunten = (Button) findViewById(R.id.entrar_boton);
         dividerview = (View) findViewById(R.id.divider34);
         inc = (TextView) findViewById(R.id.incorrecto);
+<<<<<<< HEAD
 
         nombre = (EditText) findViewById(R.id.nombre_input);
         contra = (EditText) findViewById(R.id.contrasena_input);
+=======
+
+        nombre = (EditText) findViewById(R.id.nombre_input);
+        contra = (EditText) findViewById(R.id.contrasena_input);
+
+        nombre.setText(prefs.getString("Usuario", ""));
+        contra.setText(prefs.getString("Contra", ""));
+
+        boton_activar = (Button) findViewById(R.id.botonactivar);
+        edit_tiempo= (EditText) findViewById(R.id.tiempo);
+        edit_distancia= (EditText) findViewById(R.id.distancia);
+        edit_idvehiculo= (EditText) findViewById(R.id.id_vehiculo);
+
+        edit_tiempo.setText(String.valueOf(prefs.getInt("Tiempo",30)));
+        edit_distancia.setText(String.valueOf(prefs.getInt("Metros",0)));
+
+        textrespuesta = (TextView) findViewById(R.id.respuesta);
+
+        swit = (Switch) findViewById(R.id.switch1);
+        fechacoordenada = (TextView) findViewById(R.id.fechacoordenada);
+        LocManagerGps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocManagerRed = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocListenerGps = new MyLocationListenerGps();
+        LocListenerRed = new MyLocationListenerRed();
+    }
+
+    public void GuardarUsuario(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("Usuario");
+        alertDialog.setMessage("¿Cual es tu nombre? (Con este nombre seras identificado en el sistema)");
+
+        final EditText input = new EditText(MainActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+        alertDialog.setIcon(R.mipmap.iconusuario);
+        alertDialog.setPositiveButton("ACEPTAR",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        editor.putString("ID",input.getText().toString());
+                        editor.commit();
+                        edit_idvehiculo.setText(input.getText().toString());
+                        BotonEntrar(null);
+                    }
+                });
+
+
+        alertDialog.show();
+    }
+>>>>>>> origin/master
 
         nombre.setText(prefs.getString("Usuario", ""));
         contra.setText(prefs.getString("Contra", ""));
@@ -884,7 +1135,11 @@ boolean VigilarDestino = false;
         switch ( item.getItemId() )
         {
 
+<<<<<<< HEAD
             /*case R.id.activity_main:
+=======
+            case R.id.activity_main:
+>>>>>>> origin/master
                 if (Vista==3){
                     vf.setInAnimation(inFromRightAnimation());
                     vf.setOutAnimation(outToLeftAnimation());
@@ -896,7 +1151,11 @@ boolean VigilarDestino = false;
                 }
                 Vista=1;
                 break;
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> origin/master
             case R.id.mapa:
                 if (Vista==1){
                     vf.setInAnimation(inFromRightAnimation());
@@ -935,6 +1194,7 @@ boolean VigilarDestino = false;
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< HEAD
     private Runnable SolicitarCoordenada = new Runnable(){
         public void run(){
 
@@ -958,11 +1218,22 @@ boolean VigilarDestino = false;
                 cargar.execute();
                 handler.postDelayed(VerificarDestino,4000);
             }
+=======
+    private Runnable updateData = new Runnable(){
+        public void run(){
+            if (MarkerGoogle){
+                CargarCoordenadas cargar = new CargarCoordenadas();
+                cargar.execute();  handler.postDelayed(updateData,2000);
+            }
+>>>>>>> origin/master
         }
     };
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 

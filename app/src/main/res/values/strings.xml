@@ -75,19 +75,33 @@
     <string name="config">Config</string>
     <string name="config_mapa">Configuracion Mapa</string>
     <string name="contrasena_input">Contraseña</string>
+<<<<<<< HEAD
     <string name="crear_boton">CREAR CUENTA</string>
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
     <string name="decline">Decline</string>
+=======
+    <string name="recordar_check">Recordarme</string>
+    <string name="olvidar_text">¿Olvidaste tu Contraseña?</string>
+    <string name="olvidar_text2"></string>
+    <string name="entrar_boton">INICIAR SESION</string>
+    <string name="activar">SISTEMA ACTIVADO</string>
+>>>>>>> origin/master
     <string name="desactivar">SISTEMA DESACTIVADO</string>
     <string name="entrar_boton">INICIAR SESION</string>
     <string name="info_text">Necesitas tener creada una cuenta para iniciar la aplicación</string>
     <string name="iniciar">INICIAR SESION</string>
     <string name="mapa">Mapa</string>
+<<<<<<< HEAD
     <string name="nombre_input">Nombre</string>
     <string name="olvidar_text">¿Olvidaste tu Contraseña?</string>
     <string name="olvidar_text2" />
     <string name="recordar_check">Recordarme</string>
+=======
+    <string name="config_mapa">Configuracion Mapa</string>
+    <string name="iniciar">INICIAR SESION</string>
+    <string name="cerrar">CERRAR SESION</string>
+>>>>>>> origin/master
     <string name="signin">Login</string>
     <string name="store_picture_message">Allow Ad to store image in Picture gallery?</string>
     <string name="store_picture_title">Save image</string>
