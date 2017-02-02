@@ -1,181 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
-
-
-
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/signo"
-        android:clickable="true"
-        android:onClick="Click_Imagen"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-    />
+      android:id="@+id/imagen"
+      android:clickable="true"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:src="@drawable/signo"
+      android:layout_alignParentTop="true"
+      android:onClick="Click_Imagen"
+      android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SISTEMA DE"
-        android:textAlignment="center"
-        android:id="@+id/titulo2"
-        android:textSize="30dp"
-        android:textColor="@color/Rojo"
-    />
+      android:id="@+id/text33"
+      android:layout_centerHorizontal="true"
+      android:textSize="25sp"
+      android:textStyle="bold"
+      android:textColor="@color/rojodialog"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Sign in"
+      android:textAlignment="center" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LOCALIZACIÓN MÓVIL"
-        android:textAlignment="center"
-        android:id="@+id/titulo"
-        android:textSize="30dp"
-        android:layout_below="@id/titulo2"
-        android:textColor="@color/Rojo"
-    />
+        <EditText
+          android:id="@+id/nombre_input"
+          android:background="@drawable/edit_text_border"
+          android:padding="@dimen/edit_text_padding"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/normal_padding"
+          android:hint="@string/nombre_input"
+          android:layout_below="@+id/imagen"
+          android:layout_centerHorizontal="true"
+          android:textSize="20sp"
+          android:maxLines="1"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="URL:"
-        android:id="@+id/texturl"
-        android:textSize="30dp"
-        android:layout_below="@id/titulo"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/Negro"
-    />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php"
-        android:id="@+id/editurl"
-        android:textSize="14dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/titulo"
-        android:layout_toRightOf="@+id/texturl"
-        android:layout_toEndOf="@+id/texturl"
-    />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiempo:"
-        android:id="@+id/text1"
-        android:textSize="30dp"
-        android:layout_below="@id/texturl"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/Negro"
-    />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Digite Tiempo (seg)"
-        android:layout_toRightOf="@+id/text1"
-        android:layout_marginLeft="20px"
-        android:id="@+id/tiempo"
-        android:layout_below="@id/texturl"
-        android:layout_marginTop="20dp"
-        android:text="0"
-    />
+            <EditText
+              android:id="@+id/contrasena_input"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:background="@drawable/edit_text_border"
+              android:padding="@dimen/edit_text_padding"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/normal_padding"
+              android:layout_marginBottom="@dimen/padding_between"
+              android:hint="@string/contrasena_input"
+              android:layout_below="@+id/nombre_input"
+              android:inputType="textPassword"
+              android:textSize="20sp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distancia:"
-        android:id="@+id/text2"
-        android:layout_below="@+id/text1"
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/Negro"
-    />
+    <CheckBox
+              android:id="@+id/recordar_check"
+              android:layout_width="wrap_content"
+              android:layout_height="20dp"
+              android:checked="true"
+              android:text="@string/recordar_check"
+              android:layout_below="@+id/contrasena_input"
+              android:layout_alignStart="@+id/contrasena_input" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Digite distancia (mts)"
-        android:layout_below="@+id/text1"
-        android:layout_toRightOf="@+id/text2"
-        android:layout_marginLeft="20px"
-        android:id="@+id/distancia"
-        android:layout_marginTop="20dp"
-        android:text="0"
-        />
+            <TextView
+              android:id="@+id/incorrecto"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textStyle="bold"
+              android:textColor="@color/Rojo"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="-10dp"
+              android:text="@string/olvidar_text2"
+              android:layout_below="@+id/contrasena_input"
+              android:layout_alignStart="@+id/contrasena_input" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        android:id="@+id/text3"
-        android:textSize="30dp"
-        android:layout_below="@+id/text2"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/Negro"
+            <Button
+              android:id="@+id/entrar_boton"
+              android:textStyle="bold"
+              android:textColor="#c8c9cb"
+              android:background="@color/rojodialog"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:text="@string/entrar_boton"
+              android:layout_below="@+id/recordar_check"
+              android:onClick="BotonEntrar" />
 
-        />
+              <TextView
+              android:id="@+id/text1"
+              android:textSize="30sp"
+              android:textColor="@color/Negro"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="Tiempo:"
+              android:layout_below="@+id/divider" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Steven"
-        android:layout_toRightOf="@+id/text3"
-        android:layout_marginLeft="20px"
-        android:layout_below="@+id/text2"
-        android:id="@+id/id_vehiculo"
-        android:layout_marginTop="20dp"
-        />
+            <EditText
+              android:id="@+id/tiempo"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:hint="Digite Tiempo (seg)"
+              android:maxLines="1"
+              android:layout_below="@+id/divider"
+              android:layout_marginStart="10dp"
+              android:layout_toEndOf="@+id/text1" />
+
+            <TextView
+              android:id="@+id/text2"
+              android:textSize="30sp"
+              android:textColor="@color/Negro"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="Distancia:"
+              android:layout_below="@+id/text1" />
+
+            <EditText
+              android:id="@+id/distancia"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:hint="Digite distancia (mts)"
+              android:maxLines="1"
+              android:layout_below="@+id/text1"
+              android:layout_marginStart="10dp"
+              android:layout_toEndOf="@+id/text2" />
+
+            <TextView
+              android:id="@+id/text3"
+              android:textSize="30sp"
+              android:textColor="@color/Negro"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="ID:"
+              android:layout_below="@+id/text2" />
+
+            <EditText
+              android:id="@+id/id_vehiculo"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:hint="Digite Usuario"
+              android:maxLines="1"
+              android:layout_below="@+id/text2"
+              android:layout_marginStart="10dp"
+              android:layout_toEndOf="@+id/text3" />
+
+    <View
+              android:id="@+id/divider2"
+              android:background="#c8c9cb"
+              android:layout_width="wrap_content"
+              android:layout_height="3dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="@dimen/padding_between"
+              android:layout_below="@+id/botonactivar" />
+
+        <View
+          android:id="@+id/divider"
+          android:background="#c8c9cb"
+          android:layout_width="match_parent"
+          android:layout_height="3dp"
+          android:layout_alignTop="@+id/entrar_boton"
+          android:layout_marginTop="38dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activar Gps"
-        android:id="@+id/botonactivar"
+      android:id="@+id/botonactivar"
+      android:textStyle="bold"
+      android:textColor="#c8c9cb"
+      android:background="@color/rojodialog"
+      android:layout_width="match_parent"
+      android:layout_height="30dp"
+      android:layout_marginTop="7dp"
+      android:text="ACTIVAR SISTEMA"
         android:onClick="ActivarSistema"
-        android:layout_below="@id/text3"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Desactivar Gps"
-        android:id="@+id/botonadesactivar"
-        android:onClick="DesactivarSistema"
-        android:layout_toRightOf="@+id/botonactivar"
-        android:layout_below="@id/text3"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-        />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SISTEMA DESACTIVADO"
-        android:id="@+id/estado"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColor="@color/Blanco"
-        android:background="@color/Rojo"
-        android:textSize="25dp"
-        android:layout_below="@+id/botonactivar"
-        android:layout_marginTop="80px"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        />
-
+        android:layout_below="@+id/id_vehiculo"
+        android:layout_toEndOf="@+id/incorrecto" />
 
 </RelativeLayout>

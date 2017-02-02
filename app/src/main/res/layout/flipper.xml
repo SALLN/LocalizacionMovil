@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <ViewFlipper android:id="@+id/viewFlipper"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent" >
-
-        <include layout="@layout/dialog_signin"/>
-
-        <include layout="@layout/activity_main"/>
-
-        <include layout="@layout/mapa"/>
-
-
-
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/activity_main" />
+        <include layout="@layout/mapa" />
+        <include layout="@layout/config_mapa" />
     </ViewFlipper>
-
 </LinearLayout>

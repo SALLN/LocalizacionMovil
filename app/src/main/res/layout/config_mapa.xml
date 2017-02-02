@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/config_mapa"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <Button
+      android:textSize="20dp"
+      android:textStyle="bold"
+      android:id="@+id/botoncargar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Cargar Usuarios"
+      android:onClick="CargarVehiculos" />
+
+      <View
+      android:id="@+id/divider34"
+      android:background="#c8c9cb"
+      android:layout_width="wrap_content"
+      android:layout_height="3dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="3dp"
+      android:layout_below="@id/botoncargar" />
+
+    <TextView
+      android:textSize="25dp"
+      android:id="@+id/respuesta23"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Actualizar posicion"
+      android:layout_below="@id/divider34"
+      android:layout_alignParentLeft="true" />
+
+    <Switch
+      android:id="@+id/switch1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textOn="ON"
+      android:textOff="OFF"
+      android:layout_below="@id/divider34"
+      android:layout_alignParentRight="true"
+      android:onClick="MarkerONOFF" />
+
+    <View
+      android:id="@+id/divider56"
+      android:background="#c8c9cb"
+      android:layout_width="wrap_content"
+      android:layout_height="3dp"
+      android:layout_marginTop="5dp"
+      android:layout_below="@id/respuesta23" />
+
+    <TextView
+      android:textSize="25dp"
+      android:id="@+id/segui"
+      android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:text="Seguimiento"
+      android:layout_below="@id/divider56"
+      android:layout_alignParentLeft="true" />
+
+    <Switch
+      android:id="@+id/switchseguimiento"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textOn="ON"
+      android:textOff="OFF"
+      android:layout_below="@id/divider56"
+      android:layout_alignParentRight="true"
+      android:onClick="Seguimiento" />
+
+    <View
+      android:id="@+id/divider6"
+      android:background="#c8c9cb"
+      android:layout_width="wrap_content"
+      android:layout_height="3dp"
+      android:layout_marginTop="5dp"
+      android:layout_below="@id/segui" />
+
+    <TextView
+      android:textSize="30dp"
+      android:textColor="@color/Rojo"
+      android:id="@+id/respuesta"
+      android:visibility="visible"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="respuesta servidor"
+      android:layout_below="@id/divider6"
+      android:textAlignment="4" />
+      
+</RelativeLayout>
