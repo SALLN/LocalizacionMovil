@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -17,29 +16,5 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="30dp" />
-=======
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
-
-    <TextView
-        android:id="@+id/fechacoordenada"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        />
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/map"
-    tools:context=".MainActivity"
-    android:layout_marginTop="30dp"
-    android:name="com.google.android.gms.maps.SupportMapFragment" />
->>>>>>> origin/master
-    </RelativeLayout>
+</RelativeLayout>

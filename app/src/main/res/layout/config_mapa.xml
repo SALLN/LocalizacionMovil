@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 
 <RelativeLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
@@ -95,74 +94,5 @@
       android:textAlignment="4" />
       
 </RelativeLayout>
-=======
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:id="@+id/config_mapa"
-    tools:context="prueba.app.llerena.steven.com.localizacionmovil.MainActivity">
-
-    <Button
-        android:id="@+id/botoncargar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cargar Usuarios"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:onClick="CargarVehiculos"/>
 
 
-    <View
-        android:id="@+id/divider34"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_below="@+id/botoncargar"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="3dp"
-        android:background="#C8C9CB" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Actualizar posicion"
-        android:id="@+id/respuesta23"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/divider34"
-        android:textSize="25dp"/>
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="OFF"
-        android:textOn="ON"
-        android:layout_below="@id/divider34"
-        android:layout_alignParentRight="true"
-        android:onClick="MarkerONOFF"/>
-
-    <View
-        android:id="@+id/divider56"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_below="@+id/respuesta23"
-        android:layout_marginTop="5dp"
-        android:background="#C8C9CB" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="respuesta servidor"
-        android:textAlignment="center"
-        android:id="@+id/respuesta"
-        android:layout_below="@+id/divider56"
-        android:textSize="30dp"
-        android:textColor="@color/Rojo"
-        android:visibility="invisible"/>
-
-</RelativeLayout>
->>>>>>> origin/master

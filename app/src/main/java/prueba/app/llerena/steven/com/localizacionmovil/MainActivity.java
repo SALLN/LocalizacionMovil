@@ -78,77 +78,62 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-<<<<<<< HEAD
+
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.sqrt;
 
-=======
->>>>>>> origin/master
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback    {
+
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    MyLocationListenerGps LocListenerGps;           MyLocationListenerRed LocListenerRed;
-    LocationManager LocManagerGps,       LocManagerRed;
-<<<<<<< HEAD
+    MyLocationListenerGps LocListenerGps;
+    MyLocationListenerRed LocListenerRed;
+    LocationManager LocManagerGps, LocManagerRed;
 
-=======
-    Button boton_activar,aunten;
+    Button boton_activar, aunten;
     View dividerview;
-    EditText edit_tiempo,edit_distancia,edit_idvehiculo,nombre,contra;
-    TextView text_estado,inc,textrespuesta,fechacoordenada;
->>>>>>> origin/master
-    String Posiciones[][] = new String[500][5];
-    String proveedor = null, fecha_gps= null, hora_gps= null, posicion=null, conectado="si", mensaje=null;
-    String ID_VEHICULO, respuestaservidor="",  respuestaservidor_vehiculos="", Usuario, Contrasena;
-    String longi,Mensaje, textbateria="MENSAJE";
-    String[] strArray, Datos_Vehiculo;
-<<<<<<< HEAD
+    EditText edit_tiempo, edit_distancia, edit_idvehiculo, nombre, contra;
+    TextView text_estado, inc, textrespuesta, fechacoordenada;
+    Switch swit, switsegui;
 
+
+    String Posiciones[][] = new String[500][5];
+    String proveedor = null, fecha_gps = null, hora_gps = null, posicion = null, conectado = "si", mensaje = null;
+    String ID_VEHICULO, respuestaservidor = "", respuestaservidor_vehiculos = "", Usuario, Contrasena;
+    String longi, Mensaje, textbateria = "MENSAJE";
+    String[] strArray, Datos_Vehiculo;
     //String ReporteCoordenadas = "http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php";
-=======
->>>>>>> origin/master
     String Vehiculo = null;
     String ReporteCoordenadas = "http://ticollcloud.ddns.net/AWS/Android_Coordenadas.php";
-    String Autenticar= "http://ticollcloud.ddns.net/AWS/Android_Autenticar.php";
+    String Autenticar = "http://ticollcloud.ddns.net/AWS/Android_Autenticar.php";
     String CargarUsuarios = "http://ticollcloud.ddns.net/AWS/MySQL/Vehicles_User.php";
     String ConsultaCoordenadas = "http://ticollcloud.ddns.net/AWS/MySQL/ConsultaMarker_APP.php";
-    int duracion=300, Vista=1, Contador_layouts=1;
-    int Cantidad=1, tiempo_espera = 30*1000, metros_espera = 0;
+    int duracion = 300, Vista = 1, Contador_layouts = 1;
+    int Cantidad = 1, tiempo_espera = 30 * 1000, metros_espera = 0;
     float init_x;
-<<<<<<< HEAD
-    boolean Interval=true, Inicio_Sesion=false, Sistema_Activado=false, MarkerGoogle = false, Arrancar = true;
 
-    HttpURLConnection con = null;       URL url = null;
-    SharedPreferences prefs;    SharedPreferences.Editor editor;
-    Handler handler = new Handler();
-    IntentFilter filter;    Intent batteryStatus;
-=======
-    HttpURLConnection con = null;       URL url = null;
-    SharedPreferences prefs;    SharedPreferences.Editor editor;
-    Handler handler;     IntentFilter filter;    Intent batteryStatus;
-    boolean Interval=true, Inicio_Sesion=false, Sistema_Activado=false, MarkerGoogle = false, Arrancar = true;
->>>>>>> origin/master
+
+    HttpURLConnection con = null;
+    URL url = null;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    Handler handler;
+    IntentFilter filter;
+    Intent batteryStatus;
+    boolean Interval = true, Inicio_Sesion = false, Sistema_Activado = false, MarkerGoogle = false, Arrancar = true;
+
     NotificationManager notifyMgr;
     ViewFlipper vf;
     RelativeLayout.LayoutParams Params_text;
     RelativeLayout.LayoutParams Params_check;
     RelativeLayout.LayoutParams Params_Selec;
     RelativeLayout layout;
-<<<<<<< HEAD
 
-    Button boton_activar,aunten;
-    View dividerview;
-    EditText edit_tiempo,edit_distancia,edit_idvehiculo,nombre,contra;
-    TextView text_estado,inc,textrespuesta,fechacoordenada;
-    Switch swit,switsegui;
-=======
-    Switch swit;
->>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        prefs = getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
         setContentView(R.layout.flipper);
@@ -162,10 +147,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Inicializar();
 
         String usu = prefs.getString("ID", "Usuariooo");
-        if (usu.equals("Usuariooo")){            GuardarUsuario();      }
-        else { edit_idvehiculo.setText(prefs.getString("ID","Usuario")); BotonEntrar(null); }
+        if (usu.equals("Usuariooo")) {
+            GuardarUsuario();
+        } else {
+            edit_idvehiculo.setText(prefs.getString("ID", "Usuario"));
+            BotonEntrar(null);
+        }
     }
-<<<<<<< HEAD
 
     @Override
     public void onPause() {
@@ -180,7 +168,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onResume();  // Always call the superclass method first
 
     }
-Float LatDestino,LngDestino;
+
+    Float LatDestino, LngDestino;
+
     @Override
     public void onMapReady(GoogleMap map) {
         // Add a marker in Sydney, Australia, and move the camera.
@@ -200,67 +190,38 @@ Float LatDestino,LngDestino;
 //        });
     }
 
-=======
 
-    @Override
-    public void onPause() {
-        super.onPause();  // Always call the superclass method first
-        MarkerGoogle = false;
-        swit.setChecked(false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-
-    }
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-        // Add a marker in Sydney, Australia, and move the camera.
-        mMap = map;
-
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,10));
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            public void onMapClick(LatLng point) {
-                Toast.makeText(
-                        MainActivity.this,
-                        "Click\n" +
-                                "Lat: " + point.latitude + "\n" +
-                                "Lng: " + point.longitude + "\n",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
->>>>>>> origin/master
-    private class ListenerTouchViewFlipper implements View.OnTouchListener{
+    private class ListenerTouchViewFlipper implements View.OnTouchListener {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: //Cuando el usuario toca la pantalla por primera vez
-                    init_x=event.getX();
+                    init_x = event.getX();
                     return true;
                 case MotionEvent.ACTION_UP: //Cuando el usuario deja de presionar//
-                    float distance =init_x-event.getX();
-                    if(distance<-100)
-                    {
+                    float distance = init_x - event.getX();
+                    if (distance < -100) {
                         vf.setInAnimation(inFromLeftAnimation());
                         vf.setOutAnimation(outToRightAnimation());
                         vf.showPrevious();
-                        if (Vista==3 || Vista==2){     Vista--;   }else{    Vista=3;    }
+                        if (Vista == 3 || Vista == 2) {
+                            Vista--;
+                        } else {
+                            Vista = 3;
+                        }
                     }
 
-                    if(distance>100)
-                    {
+                    if (distance > 100) {
                         vf.setInAnimation(inFromRightAnimation());
                         vf.setOutAnimation(outToLeftAnimation());
                         vf.showNext();
-                        if (Vista==1 || Vista==2){     Vista++;   }else{    Vista=1;    }
+                        if (Vista == 1 || Vista == 2) {
+                            Vista++;
+                        } else {
+                            Vista = 1;
+                        }
                     }
 
                 default:
@@ -271,25 +232,18 @@ Float LatDestino,LngDestino;
     }
 
     private Animation inFromRightAnimation() {
-<<<<<<< HEAD
 
         Animation inFromRight = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
-                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
+                Animation.RELATIVE_TO_PARENT, +1.0f, Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, 0.0f);
 
-=======
-
-        Animation inFromRight = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
-                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
-
->>>>>>> origin/master
         inFromRight.setDuration(duracion);
         inFromRight.setInterpolator(new AccelerateInterpolator());
 
         return inFromRight;
 
     }
+
     private Animation outToLeftAnimation() {
         Animation outtoLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 0.0f,
@@ -300,6 +254,7 @@ Float LatDestino,LngDestino;
         outtoLeft.setInterpolator(new AccelerateInterpolator());
         return outtoLeft;
     }
+
     private Animation inFromLeftAnimation() {
         Animation inFromLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, -1.0f,
@@ -310,6 +265,7 @@ Float LatDestino,LngDestino;
         inFromLeft.setInterpolator(new AccelerateInterpolator());
         return inFromLeft;
     }
+
     private Animation outToRightAnimation() {
         Animation outtoRight = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 0.0f,
@@ -323,7 +279,7 @@ Float LatDestino,LngDestino;
 
     public void BotonEntrar(View v2) {
 
-        if(!Inicio_Sesion) {
+        if (!Inicio_Sesion) {
             CheckBox checkk = (CheckBox) findViewById(R.id.recordar_check);
             boolean regis = checkk.isChecked();
             Usuario = nombre.getText().toString();
@@ -338,115 +294,87 @@ Float LatDestino,LngDestino;
 
             IniciarSesion iniciarSesion = new IniciarSesion();
             iniciarSesion.execute();
-        }else{
-            if (Sistema_Activado){                ActivarSistema(null);            }
+        } else {
+            if (Sistema_Activado) {
+                ActivarSistema(null);
+            }
 
             aunten.setText("INICIAR SESION");
             aunten.setBackgroundColor(Color.parseColor("#E91E63"));
-            Inicio_Sesion=false;
+            Inicio_Sesion = false;
             nombre.setEnabled(true);
             contra.setEnabled(true);
         }
 
-}
+    }
 
     public void ActivarSistema(View v) {
 
-<<<<<<< HEAD
 
-        Log.i("ACTIVAR SISTEMA","ACTIVAR SISTEMA");
+        Log.i("ACTIVAR SISTEMA", "ACTIVAR SISTEMA");
 
-    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED & ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) { return;}
-    Sistema_Activado=!Sistema_Activado;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED & ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {return;}
+        Log.i("ACTIVAR SISTEMA", "ACTIVAR SISTEMA 2");
 
-        if (Sistema_Activado) {
+        Sistema_Activado = !Sistema_Activado;
 
-           // if (Inicio_Sesion) {
-                boton_activar.setText("DESACTIVAR SISTEMA");
-                boton_activar.setBackgroundColor(Color.parseColor("#0bf43d"));
+            if (Sistema_Activado) {
 
-        tiempo_espera = Integer.parseInt(edit_tiempo.getText().toString()) * 1000;
-        metros_espera = Integer.parseInt(edit_distancia.getText().toString());
-        ID_VEHICULO = edit_idvehiculo.getText().toString();
+                if (Inicio_Sesion) {
+                    boton_activar.setText("DESACTIVAR SISTEMA");
+                    boton_activar.setBackgroundColor(Color.parseColor("#0bf43d"));
 
-        editor.putInt("Tiempo",tiempo_espera/1000);
-=======
-    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED & ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) { return;}
-    Sistema_Activado=!Sistema_Activado;
+                    tiempo_espera = Integer.parseInt(edit_tiempo.getText().toString()) * 1000;
+                    metros_espera = Integer.parseInt(edit_distancia.getText().toString());
+                    ID_VEHICULO = edit_idvehiculo.getText().toString();
 
-        if (Sistema_Activado) {
+                    editor.putInt("Tiempo", tiempo_espera/1000);
+                    editor.putInt("Metros", metros_espera);
+                    editor.putString("ID", ID_VEHICULO);
+                    editor.commit();
 
-            if (Inicio_Sesion) {
-                boton_activar.setText("DESACTIVAR SISTEMA");
-                boton_activar.setBackgroundColor(Color.parseColor("#0bf43d"));
+                    LocManagerGps.requestLocationUpdates(LocationManager.GPS_PROVIDER, tiempo_espera, metros_espera, LocListenerGps);
 
-        tiempo_espera = Integer.parseInt(edit_tiempo.getText().toString()) * 1000;
-        metros_espera = Integer.parseInt(edit_distancia.getText().toString());
-        ID_VEHICULO = edit_idvehiculo.getText().toString();
+                    boolean status_gps = LocManagerGps.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                    if (!status_gps) StartRed();
+                    edit_tiempo.setEnabled(false);
+                    edit_distancia.setEnabled(false);
+                    edit_idvehiculo.setEnabled(false);
+                } else {
+                    Sistema_Activado = !Sistema_Activado;
+                    Toast.makeText(getBaseContext(), "Debe iniciar sesion para encender el sistema", Toast.LENGTH_LONG).show();
+                }
 
-        editor.putInt("Tiempo",tiempo_espera);
->>>>>>> origin/master
-        editor.putInt("Metros",metros_espera);
-        editor.putString("ID", ID_VEHICULO);
-        editor.commit();
+            } else {
 
-        LocManagerGps.requestLocationUpdates(LocationManager.GPS_PROVIDER, tiempo_espera, metros_espera, LocListenerGps);
+                boton_activar.setText("ACTIVAR SISTEMA");
+                boton_activar.setBackgroundColor(Color.parseColor("#E91E63"));
 
-        boolean status_gps = LocManagerGps.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!status_gps) StartRed();
-                edit_tiempo.setEnabled(false);
-                edit_distancia.setEnabled(false);
-                edit_idvehiculo.setEnabled(false);
-<<<<<<< HEAD
-           // }
-           // else{
-           //     Sistema_Activado=!Sistema_Activado;
-           //     Toast.makeText(getBaseContext(),"Debe iniciar sesion para encender el sistema",Toast.LENGTH_LONG).show();
-           // }
+                LocManagerRed.removeUpdates(LocListenerRed);
+                LocManagerGps.removeUpdates(LocListenerGps);
 
-        }
-        else{
+                edit_tiempo.setEnabled(true);
+                edit_distancia.setEnabled(true);
+                edit_idvehiculo.setEnabled(true);
 
-            boton_activar.setText("ACTIVAR SISTEMA");
-            boton_activar.setBackgroundColor(Color.parseColor("#E91E63"));
-
-=======
             }
-            else{
-                Sistema_Activado=!Sistema_Activado;
-                Toast.makeText(getBaseContext(),"Debe iniciar sesion para encender el sistema",Toast.LENGTH_LONG).show();
-            }
-        }
-        else{
 
-            boton_activar.setText("ACTIVAR SISTEMA");
-            boton_activar.setBackgroundColor(Color.parseColor("#E91E63"));
 
->>>>>>> origin/master
-            LocManagerRed.removeUpdates(LocListenerRed);
-            LocManagerGps.removeUpdates(LocListenerGps);
-
-            edit_tiempo.setEnabled(true);
-            edit_distancia.setEnabled(true);
-            edit_idvehiculo.setEnabled(true);
-        }
-<<<<<<< HEAD
-        Log.i("ACTIVAR SISTEMA","ACTIVAR SISTEMA FINAL");
-=======
->>>>>>> origin/master
+        Log.i("ACTIVAR SISTEMA", "ACTIVAR SISTEMA FINAL");
     }
 
     public void PauseRed() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED         && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)         {return;        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {return;}
 
         LocManagerRed.removeUpdates(LocListenerRed);
     }
 
     public void StartRed() {
-//
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED  && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)        {return;}
-//
-//        LocManagerRed.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, tiempo_espera, metros_espera, LocListenerRed);
+
+       if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED  && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)        {return;}
+
+       LocManagerRed.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, tiempo_espera, metros_espera, LocListenerRed);
 
     }
 
@@ -458,36 +386,54 @@ Float LatDestino,LngDestino;
 
     public class MyLocationListenerGps implements LocationListener {
 
-        @Override public void onStatusChanged(String provider, int status, Bundle extras){}
-<<<<<<< HEAD
-        @Override public void onProviderEnabled(String provider) {  Log.i("GPS","PROVIDER ENABLED");  PauseRed(); }
-        @Override public void onProviderDisabled(String provider) { Log.i("GPS","PROVIDER DISABLED");   StartRed();}
-=======
-        @Override public void onProviderEnabled(String provider) { PauseRed(); }
-        @Override public void onProviderDisabled(String provider) {
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
 
-            StartRed();}
->>>>>>> origin/master
-        @Override public void onLocationChanged(Location LocGps) {
+        @Override
+        public void onProviderEnabled(String provider) {
+            Log.i("GPS", "PROVIDER ENABLED");
+            PauseRed();
+        }
 
-            Log.i("GPS","STATUS CHANGED");
+        @Override
+        public void onProviderDisabled(String provider) {
+            Log.i("GPS", "PROVIDER DISABLED");
+            StartRed();
+        }
+
+        @Override
+        public void onLocationChanged(Location LocGps) {
+
+            Log.i("GPS", "STATUS CHANGED");
             ObtenerFecha obtenerfecha = new ObtenerFecha();
 
             fecha_gps = obtenerfecha.fecha_gps;
             hora_gps = obtenerfecha.hora_gps;
-            proveedor ="GPS";
-            posicion = LocGps.getLatitude() + ","+ LocGps.getLongitude();
+            proveedor = "GPS";
+            posicion = LocGps.getLatitude() + "," + LocGps.getLongitude();
             Ejecutar();
         }
     }
 
     public class MyLocationListenerRed implements LocationListener {
-        @Override public void onStatusChanged(String provider, int status, Bundle extras) {}
-        @Override public void onProviderEnabled(String provider) { Log.i("RED","PROVIDER ENABLED");   }
-        @Override public void onProviderDisabled(String provider) {Log.i("RED","PROVIDER DISABLED");
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
         }
-        @Override public void onLocationChanged(Location LocationRed) {
-            Log.i("RED","STATUS CHANGED");
+
+        @Override
+        public void onProviderEnabled(String provider) {
+            Log.i("RED", "PROVIDER ENABLED");
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            Log.i("RED", "PROVIDER DISABLED");
+        }
+
+        @Override
+        public void onLocationChanged(Location LocationRed) {
+            Log.i("RED", "STATUS CHANGED");
             ObtenerFecha obtenerfecha = new ObtenerFecha();
 
             fecha_gps = obtenerfecha.fecha_gps;
@@ -498,22 +444,28 @@ Float LatDestino,LngDestino;
         }
     }
 
-    public class Enviar_Mysql extends AsyncTask<String,Void,String> {
+    public class Enviar_Mysql extends AsyncTask<String, Void, String> {
 
         @Override
-        protected void onPreExecute()  {    super.onPreExecute();  Log.i("ENVIAR_MYSQL","PRE EXECUTE");       }
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.i("ENVIAR_MYSQL", "PRE EXECUTE");
+        }
 
         @Override
-        protected void onPostExecute(String result) {  super.onPostExecute(result);   onCancelled();  }
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            onCancelled();
+        }
 
         @Override
         protected String doInBackground(String... params) {
 
-            Log.i("ENVIAR_MYSQL","DOINBACKGROUND");
-            Posiciones[Cantidad][1]=posicion;
-            Posiciones[Cantidad][2]=fecha_gps;
-            Posiciones[Cantidad][3]=hora_gps;
-            Posiciones[Cantidad][4]=proveedor;
+            Log.i("ENVIAR_MYSQL", "DOINBACKGROUND");
+            Posiciones[Cantidad][1] = posicion;
+            Posiciones[Cantidad][2] = fecha_gps;
+            Posiciones[Cantidad][3] = hora_gps;
+            Posiciones[Cantidad][4] = proveedor;
             Cantidad++;
 
             try {
@@ -524,7 +476,10 @@ Float LatDestino,LngDestino;
                 urlc.connect();
 
                 conectado = "si";
-            } catch (Exception e) { Log.i("CATCH ENVIAR_MYSQL","PRIMER CATCH BACKGROUND"); conectado = "no"; } // VERIF CONEXION
+            } catch (Exception e) {
+                Log.i("CATCH ENVIAR_MYSQL", "PRIMER CATCH BACKGROUND");
+                conectado = "no";
+            } // VERIF CONEXION
 
             Arrancar = conectado == "si";
 
@@ -535,7 +490,7 @@ Float LatDestino,LngDestino;
                     String Latitud_sep = posicioness[0];
                     String Longitud_sep = posicioness[1];
 
-                    String timest = Posiciones[1][2]+" "+Posiciones[1][3]; // hfecha y hora
+                    String timest = Posiciones[1][2] + " " + Posiciones[1][3]; // hfecha y hora
                     url = new URL(ReporteCoordenadas);
                     mensaje = "Id_vehiculo=" + URLEncoder.encode(ID_VEHICULO, "UTF-8")
                             + "&Latitud_gps=" + URLEncoder.encode(Latitud_sep, "UTF-8")
@@ -549,7 +504,9 @@ Float LatDestino,LngDestino;
                     con.setFixedLengthStreamingMode(mensaje.getBytes().length); // Tamaño previamente conocido
                     con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  // Establecer application/x-www-form-urlencoded debido al formato clave-valor
 
-                } catch (IOException e) { Log.i("CATCH ENVIAR_MYSQL","SEGUNDO CATCH BACKGROUND"); } // PUBLICACION POSICION PHP PARTE 1
+                } catch (IOException e) {
+                    Log.i("CATCH ENVIAR_MYSQL", "SEGUNDO CATCH BACKGROUND");
+                } // PUBLICACION POSICION PHP PARTE 1
 
                 try {
                     assert con != null;
@@ -560,7 +517,9 @@ Float LatDestino,LngDestino;
                     out.close();
                     con.disconnect();
 
-                } catch (IOException e) {  Log.i("CATCH ENVIAR_MYSQL","TERCER CATCH BACKGROUND"); } // PUBLICACION POSICION PHP PARTE 2   OUT.
+                } catch (IOException e) {
+                    Log.i("CATCH ENVIAR_MYSQL", "TERCER CATCH BACKGROUND");
+                } // PUBLICACION POSICION PHP PARTE 2   OUT.
 
                 Cantidad--;
 
@@ -572,7 +531,6 @@ Float LatDestino,LngDestino;
                 }
 
 
-
                 if (Cantidad == 1) Arrancar = false;
 
             }// WHiLE
@@ -581,41 +539,47 @@ Float LatDestino,LngDestino;
         }
 
         @Override
-        protected void onCancelled()  {  super.onCancelled();   }
+        protected void onCancelled() {
+            super.onCancelled();
+        }
     }
 
-    public class IniciarSesion extends AsyncTask<String,Void,String> {
+    public class IniciarSesion extends AsyncTask<String, Void, String> {
 
         @Override
-        protected void onPreExecute()  {    super.onPreExecute();   }
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
         protected void onPostExecute(String result) {
 
             super.onPostExecute(result);
-            if (respuestaservidor.equals("OK")){
-                Inicio_Sesion=true;
+            if (respuestaservidor.equals("OK")) {
+                Inicio_Sesion = true;
                 aunten.setText(R.string.cerrar);
                 aunten.setBackgroundColor(Color.parseColor("#0bf43d"));
                 inc.setText("");
                 nombre.setEnabled(false);
                 contra.setEnabled(false);
-            if (!Sistema_Activado){                ActivarSistema(null);          }
+                if (!Sistema_Activado) {
+                    ActivarSistema(null);
+                }
 
-        }else if(respuestaservidor.equals("NO")){
-            inc.setText("Usuario o contraseña Incorrectos");
-            aunten.setText(R.string.iniciar);
-            aunten.setBackgroundColor(Color.parseColor("#E91E63"));
-            Inicio_Sesion=false;
-        }
-            else{
-                Toast.makeText(getBaseContext(),"No hay conexión a internet",Toast.LENGTH_LONG).show();
+            } else if (respuestaservidor.equals("NO")) {
+                inc.setText("Usuario o contraseña Incorrectos");
                 aunten.setText(R.string.iniciar);
                 aunten.setBackgroundColor(Color.parseColor("#E91E63"));
-                Inicio_Sesion=false;
+                Inicio_Sesion = false;
+            } else {
+                Toast.makeText(getBaseContext(), "No hay conexión a internet", Toast.LENGTH_LONG).show();
+                aunten.setText(R.string.iniciar);
+                aunten.setBackgroundColor(Color.parseColor("#E91E63"));
+                Inicio_Sesion = false;
             }
             onCancelled();
         }
+
         @Override
         protected String doInBackground(String... params) {
 
@@ -632,33 +596,40 @@ Float LatDestino,LngDestino;
                 out.flush();
                 InputStream is2 = urlc.getInputStream();
                 int ch2;
-                StringBuffer b2 =new StringBuffer();
-                while( ( ch2 = is2.read() ) != -1 ){
-                    b2.append( (char)ch2 );
+                StringBuffer b2 = new StringBuffer();
+                while ((ch2 = is2.read()) != -1) {
+                    b2.append((char) ch2);
                 }
-                respuestaservidor=b2.toString();
+                respuestaservidor = b2.toString();
 
                 out.close();
                 urlc.disconnect();
 
-            } catch (IOException e) { } // PUBLICACION POSICION PHP PARTE 1
+            } catch (IOException e) {
+            } // PUBLICACION POSICION PHP PARTE 1
             return null;
         }
 
         @Override
-        protected void onCancelled()  {  super.onCancelled();   }
+        protected void onCancelled() {
+            super.onCancelled();
+        }
     }
 
-    public class CargarVehiculosPHP extends AsyncTask<String,Void,String> {
+    public class CargarVehiculosPHP extends AsyncTask<String, Void, String> {
 
         @Override
-        protected void onPreExecute()  {    super.onPreExecute();   }
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
-        protected void onPostExecute(String result) {super.onPostExecute(result);
-            textrespuesta.setText(respuestaservidor_vehiculos+"--"+strArray[0]+"--"+strArray[1]);
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            textrespuesta.setText(respuestaservidor_vehiculos + "--" + strArray[0] + "--" + strArray[1]);
             CrearLayouts();
-            onCancelled();  }
+            onCancelled();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -680,89 +651,39 @@ Float LatDestino,LngDestino;
 
                 InputStream is2 = urlc.getInputStream();
                 int ch2;
-                StringBuffer b2 =new StringBuffer();
-                while( ( ch2 = is2.read() ) != -1 ){
-                    b2.append( (char)ch2 );
+                StringBuffer b2 = new StringBuffer();
+                while ((ch2 = is2.read()) != -1) {
+                    b2.append((char) ch2);
                 }
 
-                respuestaservidor_vehiculos=b2.toString();
-                strArray = respuestaservidor_vehiculos.substring(1,respuestaservidor_vehiculos.length()-1).split(",");
-                for (int jl=0;jl<strArray.length;jl++){
-                    strArray[jl]=strArray[jl].substring(1,strArray[jl].length()-1);
+                respuestaservidor_vehiculos = b2.toString();
+                strArray = respuestaservidor_vehiculos.substring(1, respuestaservidor_vehiculos.length() - 1).split(",");
+                for (int jl = 0; jl < strArray.length; jl++) {
+                    strArray[jl] = strArray[jl].substring(1, strArray[jl].length() - 1);
 
                 }
 
-<<<<<<< HEAD
-=======
                 out.close();
                 urlc.disconnect();
 
-            } catch (IOException e) { } // PUBLICACION POSICION PHP PARTE 1
+            } catch (IOException e) {
+            } // PUBLICACION POSICION PHP PARTE 1
             return null;
         }
 
         @Override
-        protected void onCancelled()  {  super.onCancelled();   }
-    }
-
-    public class CargarCoordenadas extends AsyncTask<String,Void,String> {
-
-        @Override
-        protected void onPreExecute()  {    super.onPreExecute();   }
-
-        @Override
-        protected void onPostExecute(String result) {super.onPostExecute(result);
-           fechacoordenada.setText(respuestaservidor_vehiculos);
-            mMap.clear();
-            LatLng pos = new LatLng(Float.parseFloat(Datos_Vehiculo[0]),Float.parseFloat(Datos_Vehiculo[1]));
-            mMap.addMarker(new MarkerOptions().position(pos).title("Marker in Sydney"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos,17));
-
-            onCancelled();  }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-
-                HttpURLConnection urlc = (HttpURLConnection) (new URL(ConsultaCoordenadas).openConnection());
-
-                mensaje = "Usuario=" + URLEncoder.encode(Usuario, "UTF-8")
-                        + "&Vehiculo=" + URLEncoder.encode(Vehiculo, "UTF-8");
-
-                urlc.setDoOutput(true); // Activar método POST
-                urlc.setFixedLengthStreamingMode(mensaje.getBytes().length); // Tamaño previamente conocido
-                urlc.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  // Establecer application/x-www-form-urlencoded debido al formato clave-valor
-
-                OutputStream out = new BufferedOutputStream(urlc.getOutputStream());
-                out.write(mensaje.getBytes());
-                out.flush();
-
-                InputStream is2 = urlc.getInputStream();
-                int ch2;
-                StringBuffer b2 =new StringBuffer();
-                while( ( ch2 = is2.read() ) != -1 ){
-                    b2.append( (char)ch2 );
-                }
-                respuestaservidor_vehiculos=b2.toString();
-                Datos_Vehiculo = respuestaservidor_vehiculos.substring(1,respuestaservidor_vehiculos.length()-1).split(",");
->>>>>>> origin/master
-                out.close();
-                urlc.disconnect();
-
-            } catch (IOException e) { } // PUBLICACION POSICION PHP PARTE 1
-            return null;
+        protected void onCancelled() {
+            super.onCancelled();
         }
-
-        @Override
-        protected void onCancelled()  {  super.onCancelled();   }
     }
 
-<<<<<<< HEAD
-    public class CargarCoordenadas extends AsyncTask<String,Void,String> {
+
+    public class CargarCoordenadas extends AsyncTask<String, Void, String> {
 
         @Override
-        protected void onPreExecute()  {    super.onPreExecute();   }
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
         protected void onPostExecute(String result) {
@@ -773,7 +694,7 @@ Float LatDestino,LngDestino;
                 try {
                     fechacoordenada.setText(respuestaservidor_vehiculos);
                     mMap.clear();
-                    LatLng pos = new LatLng(LatVehiculo,LngVehiculo);
+                    LatLng pos = new LatLng(LatVehiculo, LngVehiculo);
                     mMap.addMarker(new MarkerOptions().position(pos).title("Marker in Sydney"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));
                 } catch (Exception e) {
@@ -784,14 +705,16 @@ Float LatDestino,LngDestino;
             if (VigilarDestino) {
 
                 try {
-                    Float Dif_Latitud=abs(LatVehiculo-LatDestino);
-                    Float Dif_Longitud=abs(LngVehiculo-LngDestino);
-                    Double Distancia_Metros=110000*(sqrt((Dif_Latitud*Dif_Latitud)+(Dif_Longitud*Dif_Longitud)));
+                    Float Dif_Latitud = abs(LatVehiculo - LatDestino);
+                    Float Dif_Longitud = abs(LngVehiculo - LngDestino);
+                    Double Distancia_Metros = 110000 * (sqrt((Dif_Latitud * Dif_Latitud) + (Dif_Longitud * Dif_Longitud)));
 
-                    if (Distancia_Metros<50){
+                    if (Distancia_Metros < 50) {
                         VigilarDestino = false;
                     }
-                } catch (Exception e) { Toast.makeText(getBaseContext(), "CATCH CARGAR COORDENADAS POSTEXECUTE VIGILARDESTINO", Toast.LENGTH_LONG).show();  }
+                } catch (Exception e) {
+                    Toast.makeText(getBaseContext(), "CATCH CARGAR COORDENADAS POSTEXECUTE VIGILARDESTINO", Toast.LENGTH_LONG).show();
+                }
             }
 
             onCancelled();
@@ -817,12 +740,12 @@ Float LatDestino,LngDestino;
 
                 InputStream is2 = urlc.getInputStream();
                 int ch2;
-                StringBuffer b2 =new StringBuffer();
-                while( ( ch2 = is2.read() ) != -1 ){
-                    b2.append( (char)ch2 );
+                StringBuffer b2 = new StringBuffer();
+                while ((ch2 = is2.read()) != -1) {
+                    b2.append((char) ch2);
                 }
-                respuestaservidor_vehiculos=b2.toString();
-                Datos_Vehiculo = respuestaservidor_vehiculos.substring(1,respuestaservidor_vehiculos.length()-1).split(",");
+                respuestaservidor_vehiculos = b2.toString();
+                Datos_Vehiculo = respuestaservidor_vehiculos.substring(1, respuestaservidor_vehiculos.length() - 1).split(",");
 
                 LatVehiculo = Float.parseFloat(Datos_Vehiculo[0]);
                 LngVehiculo = Float.parseFloat(Datos_Vehiculo[1]);
@@ -830,97 +753,97 @@ Float LatDestino,LngDestino;
                 out.close();
                 urlc.disconnect();
 
-            } catch (IOException e) { Toast.makeText(getBaseContext(),"CATCH CARGAR COORDENADAS BACKGROUND",Toast.LENGTH_LONG).show(); } // PUBLICACION POSICION PHP PARTE 1
+            } catch (IOException e) {
+                Toast.makeText(getBaseContext(), "CATCH CARGAR COORDENADAS BACKGROUND", Toast.LENGTH_LONG).show();
+            } // PUBLICACION POSICION PHP PARTE 1
             return null;
         }
 
         @Override
-        protected void onCancelled()  {  super.onCancelled();   }
+        protected void onCancelled() {
+            super.onCancelled();
+        }
     }
-Float LatVehiculo,LngVehiculo;
-String FechaVehiculo;
 
-=======
->>>>>>> origin/master
-    public void CargarVehiculos(View v3){
+    Float LatVehiculo, LngVehiculo;
+    String FechaVehiculo;
 
-        CargarVehiculosPHP cargar  = new CargarVehiculosPHP();
+    public void CargarVehiculos(View v3) {
+
+        CargarVehiculosPHP cargar = new CargarVehiculosPHP();
         cargar.execute();
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/master
     }
 
-    public void CrearLayouts(){
+    public void CrearLayouts() {
 
-    Params_text = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-    Params_check = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-    Params_Selec = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        Params_text = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        Params_check = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        Params_Selec = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         TextView tv1 = new TextView(this);
-        tv1.setText(strArray[Contador_layouts-1]);
+        tv1.setText(strArray[Contador_layouts - 1]);
         tv1.setId(Integer.parseInt(String.valueOf(Contador_layouts)));
-        if (Contador_layouts==1)
-        {
+        if (Contador_layouts == 1) {
             layout = (RelativeLayout) findViewById(R.id.config_mapa);
             Params_text.addRule(RelativeLayout.BELOW, R.id.botoncargar);
             Params_check.addRule(RelativeLayout.BELOW, R.id.botoncargar);
+        } else {
+            Params_text.addRule(RelativeLayout.BELOW, Contador_layouts - 1);
+            Params_check.addRule(RelativeLayout.BELOW, Contador_layouts - 1);
         }
-        else
-        {
-            Params_text.addRule(RelativeLayout.BELOW,Contador_layouts-1);
-            Params_check.addRule(RelativeLayout.BELOW,Contador_layouts-1);
-        }
-        Params_Selec.addRule(RelativeLayout.BELOW,Contador_layouts);
-        Params_Selec.setMargins(0,13,0,0);
+        Params_Selec.addRule(RelativeLayout.BELOW, Contador_layouts);
+        Params_Selec.setMargins(0, 13, 0, 0);
 
-        Params_text.setMargins(0,30,0,0);
-        Params_check.setMargins(10,20,0,0);
-        layout.addView(tv1,Params_text);
+        Params_text.setMargins(0, 30, 0, 0);
+        Params_check.setMargins(10, 20, 0, 0);
+        layout.addView(tv1, Params_text);
 
         CheckBox check = new CheckBox(this);
-        check.setId(Integer.parseInt(String.valueOf(Contador_layouts+100)));
-        Params_check.addRule(RelativeLayout.RIGHT_OF,Contador_layouts);
-        layout.addView(check,Params_check);
+        check.setId(Integer.parseInt(String.valueOf(Contador_layouts + 100)));
+        Params_check.addRule(RelativeLayout.RIGHT_OF, Contador_layouts);
+        layout.addView(check, Params_check);
         dividerview.setLayoutParams(Params_Selec);
-        Params_Selec.height=8;
+        Params_Selec.height = 8;
 
-        if (Contador_layouts<strArray.length) {            Contador_layouts++;            CrearLayouts();        }
+        if (Contador_layouts < strArray.length) {
+            Contador_layouts++;
+            CrearLayouts();
+        }
     }
 
-    public void MarkerONOFF(View vdf){
+    public void MarkerONOFF(View vdf) {
 
         swit = (Switch) findViewById(R.id.switch1);
 
-        if(swit.isChecked()){
+        if (swit.isChecked()) {
 
-<<<<<<< HEAD
             GuardarVehiculo();
 
             MarkerGoogle = true;
-            handler.postDelayed(SolicitarCoordenada,100);
+            handler.postDelayed(SolicitarCoordenada, 100);
+        } else {
+            MarkerGoogle = false;
         }
-        else{            MarkerGoogle=false;        }
     }
 
-    public void GuardarVehiculo(){
+    public void GuardarVehiculo() {
 
-        int Contador=101;
+        int Contador = 101;
         boolean bol = true;
 
-        while(bol) {
+        while (bol) {
             CheckBox choricera = (CheckBox) findViewById(Integer.parseInt(String.valueOf(Contador)));
             bol = !choricera.isChecked();
             Contador++;
         }
-        if (!bol){            Vehiculo=strArray[Contador-102];        }
+        if (!bol) {
+            Vehiculo = strArray[Contador - 102];
+        }
     }
-=======
-            int Contador=101;
-            boolean bol = true;
 
+    int Contador = 101;
+    boolean bol = true;
+/*
             while(bol) {
                 CheckBox choricera = (CheckBox) findViewById(Integer.parseInt(String.valueOf(Contador)));
                 bol = !choricera.isChecked();
@@ -936,10 +859,9 @@ String FechaVehiculo;
             MarkerGoogle=false;
 
         }
-    }
+    }*/
 
->>>>>>> origin/master
-    public void Click_Imagen(View view){
+    public void Click_Imagen(View view) {
 
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
         dialogo1.setTitle("About");
@@ -952,7 +874,7 @@ String FechaVehiculo;
         dialogo1.show();
     }
 
-    public void Seguimiento(View ver){
+    public void Seguimiento(View ver) {
 
         switsegui = (Switch) findViewById(R.id.switchseguimiento);
 
@@ -968,21 +890,24 @@ String FechaVehiculo;
                     //handler.postDelayed(VerificarDestino, 100);
                 }
             });
-        }else{            mMap.setOnMapClickListener(null);        }
+        } else {
+            mMap.setOnMapClickListener(null);
+        }
 
     }
+
     private void Notificacion() {
 
-        notifyMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        Intent intent = new Intent(this,Cerrarapp.class);
+        Intent intent = new Intent(this, Cerrarapp.class);
 //        intent.setAction(Intent.ACTION_VIEW); // Para lanzar activity al pulsar en la notificacion
-        PendingIntent piDismiss = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent piDismiss = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.marker)
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.marker))
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.marker))
                         .setContentTitle("LOCALIZACION MOVIL")
                         .setContentText("parte superior")
                         .setStyle(
@@ -991,34 +916,35 @@ String FechaVehiculo;
                         .addAction(R.drawable.cerrar,
                                 "SWITCH OFF", piDismiss)
                         //.addAction(R.drawable.androideity2,
-                          //      "IGNORAR", null)
+                        //      "IGNORAR", null)
                         .setAutoCancel(true);
 
         Notification notification = mBuilder.build();
 
         // Construir la notificación y emitirla
-        notifyMgr.notify(1010,notification);
+        notifyMgr.notify(1010, notification);
 
     }
 
-    public void Vibrar(){
+    public void Vibrar() {
         Vibrator ver = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long ldf[] = {100,100,100,100};
-        ver.vibrate(ldf,-1);
+        long ldf[] = {100, 100, 100, 100};
+        ver.vibrate(ldf, -1);
 
     }
-    public void Cerrar(){        finish();    }
 
-    public void Inicializar(){
+    public void Cerrar() {
+        finish();
+    }
+
+    public void Inicializar() {
 
         aunten = (Button) findViewById(R.id.entrar_boton);
         dividerview = (View) findViewById(R.id.divider34);
         inc = (TextView) findViewById(R.id.incorrecto);
-<<<<<<< HEAD
 
         nombre = (EditText) findViewById(R.id.nombre_input);
         contra = (EditText) findViewById(R.id.contrasena_input);
-=======
 
         nombre = (EditText) findViewById(R.id.nombre_input);
         contra = (EditText) findViewById(R.id.contrasena_input);
@@ -1027,12 +953,12 @@ String FechaVehiculo;
         contra.setText(prefs.getString("Contra", ""));
 
         boton_activar = (Button) findViewById(R.id.botonactivar);
-        edit_tiempo= (EditText) findViewById(R.id.tiempo);
-        edit_distancia= (EditText) findViewById(R.id.distancia);
-        edit_idvehiculo= (EditText) findViewById(R.id.id_vehiculo);
+        edit_tiempo = (EditText) findViewById(R.id.tiempo);
+        edit_distancia = (EditText) findViewById(R.id.distancia);
+        edit_idvehiculo = (EditText) findViewById(R.id.id_vehiculo);
 
-        edit_tiempo.setText(String.valueOf(prefs.getInt("Tiempo",30)));
-        edit_distancia.setText(String.valueOf(prefs.getInt("Metros",0)));
+        edit_tiempo.setText(String.valueOf(prefs.getInt("Tiempo", 30)));
+        edit_distancia.setText(String.valueOf(prefs.getInt("Metros", 0)));
 
         textrespuesta = (TextView) findViewById(R.id.respuesta);
 
@@ -1044,7 +970,7 @@ String FechaVehiculo;
         LocListenerRed = new MyLocationListenerRed();
     }
 
-    public void GuardarUsuario(){
+    public void GuardarUsuario() {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Usuario");
@@ -1061,67 +987,18 @@ String FechaVehiculo;
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        editor.putString("ID",input.getText().toString());
+                        editor.putString("ID", input.getText().toString());
                         editor.commit();
                         edit_idvehiculo.setText(input.getText().toString());
                         BotonEntrar(null);
                     }
                 });
-
-
         alertDialog.show();
     }
->>>>>>> origin/master
-
-        nombre.setText(prefs.getString("Usuario", ""));
-        contra.setText(prefs.getString("Contra", ""));
-
-        boton_activar = (Button) findViewById(R.id.botonactivar);
-        edit_tiempo= (EditText) findViewById(R.id.tiempo);
-        edit_distancia= (EditText) findViewById(R.id.distancia);
-        edit_idvehiculo= (EditText) findViewById(R.id.id_vehiculo);
-
-        edit_tiempo.setText(String.valueOf(prefs.getInt("Tiempo",30)));
-        edit_distancia.setText(String.valueOf(prefs.getInt("Metros",0)));
-
-        textrespuesta = (TextView) findViewById(R.id.respuesta);
-
-        swit = (Switch) findViewById(R.id.switch1);
-        fechacoordenada = (TextView) findViewById(R.id.fechacoordenada);
-        LocManagerGps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        LocManagerRed = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        LocListenerGps = new MyLocationListenerGps();
-        LocListenerRed = new MyLocationListenerRed();
-    }
-
-    public void GuardarUsuario(){
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle("Usuario");
-        alertDialog.setMessage("¿Cual es tu nombre? (Con este nombre seras identificado en el sistema)");
-
-        final EditText input = new EditText(MainActivity.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        alertDialog.setView(input);
-        alertDialog.setIcon(R.mipmap.iconusuario);
-        alertDialog.setPositiveButton("ACEPTAR",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        editor.putString("ID",input.getText().toString());
-                        editor.commit();
-                        edit_idvehiculo.setText(input.getText().toString());
-                        BotonEntrar(null);
-                    }
-                });
 
 
-        alertDialog.show();
-    }
-boolean VigilarDestino = false;
+    boolean VigilarDestino = false;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -1132,14 +1009,10 @@ boolean VigilarDestino = false;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch ( item.getItemId() )
-        {
+        switch (item.getItemId()) {
 
-<<<<<<< HEAD
             /*case R.id.activity_main:
-=======
             case R.id.activity_main:
->>>>>>> origin/master
                 if (Vista==3){
                     vf.setInAnimation(inFromRightAnimation());
                     vf.setOutAnimation(outToLeftAnimation());
@@ -1151,39 +1024,33 @@ boolean VigilarDestino = false;
                 }
                 Vista=1;
                 break;
-<<<<<<< HEAD
 */
-=======
 
->>>>>>> origin/master
             case R.id.mapa:
-                if (Vista==1){
+                if (Vista == 1) {
                     vf.setInAnimation(inFromRightAnimation());
                     vf.setOutAnimation(outToLeftAnimation());
                     vf.showNext();
-                }else if(Vista==3){
+                } else if (Vista == 3) {
                     vf.setInAnimation(inFromLeftAnimation());
                     vf.setOutAnimation(outToRightAnimation());
                     vf.showPrevious();
                 }
-                Vista=2;
+                Vista = 2;
                 break;
 
             case R.id.config_mapa:
-                if (Vista==1){
+                if (Vista == 1) {
                     vf.setInAnimation(inFromLeftAnimation());
                     vf.setOutAnimation(outToRightAnimation());
                     vf.showPrevious();
-                }else if(Vista==2){
+                } else if (Vista == 2) {
                     vf.setInAnimation(inFromRightAnimation());
                     vf.setOutAnimation(outToLeftAnimation());
                     vf.showNext();
                 }
-                Vista=3;
-            break;
-
-
-
+                Vista = 3;
+                break;
 
 
             default:
@@ -1194,46 +1061,41 @@ boolean VigilarDestino = false;
         return super.onOptionsItemSelected(item);
     }
 
-<<<<<<< HEAD
-    private Runnable SolicitarCoordenada = new Runnable(){
-        public void run(){
+    private Runnable SolicitarCoordenada = new Runnable() {
+        public void run() {
 
-            Log.i("RUNNABLE","SolicitarCoordenada");
+            Log.i("RUNNABLE", "SolicitarCoordenada");
 
-            if (MarkerGoogle){
+            if (MarkerGoogle) {
                 CargarCoordenadas cargar = new CargarCoordenadas();
                 cargar.execute();
-                handler.postDelayed(SolicitarCoordenada,1000);
+                handler.postDelayed(SolicitarCoordenada, 1000);
             }
         }
     };
 
-    private Runnable VerificarDestino = new Runnable(){
-        public void run(){
+    private Runnable VerificarDestino = new Runnable() {
+        public void run() {
 
-            Log.i("RUNNABLE","VerificarDestino");
+            Log.i("RUNNABLE", "VerificarDestino");
 
-            if (VigilarDestino){
+            if (VigilarDestino) {
                 CargarCoordenadas cargar = new CargarCoordenadas();
                 cargar.execute();
-                handler.postDelayed(VerificarDestino,4000);
+                handler.postDelayed(VerificarDestino, 4000);
             }
-=======
-    private Runnable updateData = new Runnable(){
-        public void run(){
-            if (MarkerGoogle){
-                CargarCoordenadas cargar = new CargarCoordenadas();
-                cargar.execute();  handler.postDelayed(updateData,2000);
-            }
->>>>>>> origin/master
         }
     };
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
+    private Runnable updateData = new Runnable() {
+        public void run() {
+            if (MarkerGoogle) {
+                CargarCoordenadas cargar = new CargarCoordenadas();
+                cargar.execute();
+                handler.postDelayed(updateData, 2000);
+            }
+        }
+    };
 }
+
+
 
